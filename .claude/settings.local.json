@@ -8,7 +8,14 @@
       "Bash(npm run build:*)",
       "Bash(gh run list:*)",
       "Bash(gh repo view:*)",
-      "Bash(gh api:*)"
+      "Bash(gh api:*)",
+      "Bash(git commit:*)",
+      "Bash(touch:*)",
+      "Bash(git init:*)",
+      "Bash(git branch:*)",
+      "Bash(git remote add:*)",
+      "Bash(npm run deploy:*)",
+      "Bash(git fetch:*)"
     ],
     "deny": []
   }

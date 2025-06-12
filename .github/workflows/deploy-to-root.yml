@@ -1,0 +1,65 @@
+name: Deploy to Root
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build
+      run: npm run build
+
+    - name: Deploy to root
+      run: |
+        # Keep source files
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        # Create a backup of source files
+        mkdir -p backup-src
+        cp -r src backup-src/
+        cp -r docs backup-src/
+        cp package*.json backup-src/
+        cp tsconfig*.json backup-src/
+        cp vite.config.ts backup-src/
+        cp tailwind.config.js backup-src/
+        cp postcss.config.js backup-src/
+        cp README.md backup-src/
+        cp CLAUDE.md backup-src/
+        cp .gitignore backup-src/
+        
+        # Copy built files to root
+        cp -r dist/* .
+        cp dist/.nojekyll .
+        
+        # Remove dist and node_modules
+        rm -rf dist node_modules
+        
+        # Restore source files to separate directory
+        rm -rf src-dev
+        mkdir src-dev
+        cp -r backup-src/* src-dev/
+        rm -rf backup-src
+        
+        # Commit and push
+        git add .
+        git commit -m "Deploy to GitHub Pages root" || exit 0
+        git push
