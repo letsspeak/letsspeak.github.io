@@ -6,7 +6,9 @@
       "Bash(gh run view:*)",
       "Bash(npm install)",
       "Bash(npm run build:*)",
-      "Bash(gh run list:*)"
+      "Bash(gh run list:*)",
+      "Bash(gh repo view:*)",
+      "Bash(gh api:*)"
     ],
     "deny": []
   }
