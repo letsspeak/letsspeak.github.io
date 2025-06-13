@@ -14,7 +14,7 @@ const Home: React.FC = () => {
                   <span className="block text-primary-600 xl:inline">Portfolio</span>
                 </h1>
                 <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                  AI・機械学習エンジニアとして技術開発に携わっています。フリーランスとして様々なプロジェクトに参画し、技術力とプレゼンスの向上を目指しています。
+                  プログラミング歴30年以上のソフトウェアエンジニア。モバイルアプリ開発からWeb開発、プロジェクト管理まで幅広い分野で活動しています。
                 </p>
                 <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                   <div className="rounded-md shadow">
@@ -57,19 +57,19 @@ const Home: React.FC = () => {
             </h2>
             <div className="space-y-4">
               <div className="border-l-4 border-primary-500 pl-4">
-                <h3 className="text-sm font-medium text-gray-900">新しいAIプロジェクト開始</h3>
-                <p className="text-sm text-gray-500">機械学習を活用した画像認識システムの開発を開始しました。</p>
-                <p className="text-xs text-gray-400 mt-1">2024年6月</p>
+                <h3 className="text-sm font-medium text-gray-900">外国人労働者管理アプリ完了</h3>
+                <p className="text-sm text-gray-500">Swift + Kotlin + NFC技術を活用した勤怠管理システムの開発を完了しました。</p>
+                <p className="text-xs text-gray-400 mt-1">2025年6月</p>
               </div>
               <div className="border-l-4 border-primary-500 pl-4">
-                <h3 className="text-sm font-medium text-gray-900">技術ブログ更新</h3>
-                <p className="text-sm text-gray-500">React + TypeScriptでのポートフォリオサイト構築についてブログで解説。</p>
-                <p className="text-xs text-gray-400 mt-1">2024年5月</p>
+                <h3 className="text-sm font-medium text-gray-900">タスク管理サービス開発支援</h3>
+                <p className="text-sm text-gray-500">TypeScript + React + AWSを活用したWebサービスのPMO業務を担当。</p>
+                <p className="text-xs text-gray-400 mt-1">2024年6月 - 2025年1月</p>
               </div>
               <div className="border-l-4 border-primary-500 pl-4">
-                <h3 className="text-sm font-medium text-gray-900">OSS貢献</h3>
-                <p className="text-sm text-gray-500">オープンソースプロジェクトへの機能追加とバグ修正を実施。</p>
-                <p className="text-xs text-gray-400 mt-1">2024年4月</p>
+                <h3 className="text-sm font-medium text-gray-900">保険システム開発</h3>
+                <p className="text-sm text-gray-500">Java + Springでの保険加入者登録サイト開発、Java研修講師も担当。</p>
+                <p className="text-xs text-gray-400 mt-1">2024年2月 - 2024年5月</p>
               </div>
             </div>
             <div className="mt-6">

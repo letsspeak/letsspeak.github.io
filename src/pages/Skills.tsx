@@ -12,57 +12,63 @@ interface SkillCategory {
 const Skills: React.FC = () => {
   const skillCategories: SkillCategory[] = [
     {
-      name: 'AI・機械学習',
+      name: 'モバイル開発',
       skills: [
-        { name: 'Python', level: 90, experience: '4年' },
-        { name: 'TensorFlow', level: 85, experience: '3年' },
-        { name: 'PyTorch', level: 80, experience: '2年' },
-        { name: 'scikit-learn', level: 85, experience: '3年' },
-        { name: 'OpenCV', level: 75, experience: '2年' },
-        { name: 'Pandas', level: 90, experience: '4年' },
-        { name: 'NumPy', level: 90, experience: '4年' },
+        { name: 'Swift', level: 95, experience: '8年' },
+        { name: 'iOS', level: 95, experience: '8年' },
+        { name: 'Kotlin', level: 85, experience: '4年' },
+        { name: 'Android', level: 85, experience: '6年' },
+        { name: 'Objective-C', level: 80, experience: '5年' },
+        { name: 'UIKit', level: 90, experience: '8年' },
+        { name: 'Core Data', level: 85, experience: '6年' },
       ]
     },
     {
       name: 'Web開発（フロントエンド）',
       skills: [
-        { name: 'React', level: 85, experience: '3年' },
-        { name: 'TypeScript', level: 80, experience: '2年' },
-        { name: 'JavaScript', level: 85, experience: '4年' },
-        { name: 'HTML/CSS', level: 90, experience: '5年' },
-        { name: 'Tailwind CSS', level: 75, experience: '1年' },
-        { name: 'Next.js', level: 70, experience: '1年' },
+        { name: 'TypeScript', level: 90, experience: '5年' },
+        { name: 'JavaScript', level: 95, experience: '10年' },
+        { name: 'React', level: 85, experience: '4年' },
+        { name: 'Vue', level: 80, experience: '3年' },
+        { name: 'Next.js', level: 75, experience: '2年' },
+        { name: 'jQuery', level: 85, experience: '8年' },
+        { name: 'HTML/CSS', level: 90, experience: '12年' },
       ]
     },
     {
       name: 'Web開発（バックエンド）',
       skills: [
-        { name: 'Node.js', level: 80, experience: '3年' },
-        { name: 'Express.js', level: 75, experience: '2年' },
-        { name: 'FastAPI', level: 80, experience: '2年' },
-        { name: 'Flask', level: 75, experience: '2年' },
-        { name: 'PostgreSQL', level: 75, experience: '3年' },
-        { name: 'MongoDB', level: 70, experience: '2年' },
+        { name: 'Java', level: 90, experience: '8年' },
+        { name: 'Spring', level: 85, experience: '6年' },
+        { name: 'PHP', level: 85, experience: '7年' },
+        { name: 'Laravel', level: 80, experience: '4年' },
+        { name: 'Ruby', level: 80, experience: '5年' },
+        { name: 'Rails', level: 75, experience: '4年' },
+        { name: 'C#', level: 75, experience: '4年' },
       ]
     },
     {
-      name: 'インフラ・DevOps',
+      name: 'データベース・インフラ',
       skills: [
-        { name: 'AWS', level: 75, experience: '2年' },
-        { name: 'Docker', level: 80, experience: '3年' },
-        { name: 'Git', level: 90, experience: '5年' },
-        { name: 'GitHub Actions', level: 70, experience: '1年' },
-        { name: 'Linux', level: 80, experience: '4年' },
+        { name: 'MySQL', level: 90, experience: '10年' },
+        { name: 'PostgreSQL', level: 80, experience: '6年' },
+        { name: 'Redis', level: 75, experience: '4年' },
+        { name: 'AWS', level: 85, experience: '6年' },
+        { name: 'Docker', level: 80, experience: '5年' },
+        { name: 'Linux', level: 85, experience: '12年' },
+        { name: 'Git', level: 95, experience: '15年' },
       ]
     },
     {
-      name: 'データ分析・可視化',
+      name: 'その他技術・ツール',
       skills: [
-        { name: 'Jupyter Notebook', level: 90, experience: '4年' },
-        { name: 'Matplotlib', level: 85, experience: '3年' },
-        { name: 'Seaborn', level: 80, experience: '3年' },
-        { name: 'Plotly', level: 75, experience: '2年' },
-        { name: 'SQL', level: 85, experience: '4年' },
+        { name: 'NFC', level: 80, experience: '2年' },
+        { name: 'Jenkins', level: 75, experience: '5年' },
+        { name: 'Appium', level: 70, experience: '3年' },
+        { name: 'cocos2d', level: 75, experience: '3年' },
+        { name: 'Firebase', level: 75, experience: '4年' },
+        { name: 'Vim', level: 90, experience: '15年' },
+        { name: 'Eclipse', level: 80, experience: '8年' },
       ]
     }
   ]
@@ -141,16 +147,16 @@ const Skills: React.FC = () => {
 
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary-600">15+</div>
+              <div className="text-3xl font-bold text-primary-600">25+</div>
               <div className="text-sm font-medium text-gray-500">使用技術数</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary-600">50+</div>
+              <div className="text-3xl font-bold text-primary-600">20+</div>
               <div className="text-sm font-medium text-gray-500">完了プロジェクト</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary-600">5年</div>
-              <div className="text-sm font-medium text-gray-500">開発経験</div>
+              <div className="text-3xl font-bold text-primary-600">30年+</div>
+              <div className="text-sm font-medium text-gray-500">プログラミング歴</div>
             </div>
           </div>
         </div>

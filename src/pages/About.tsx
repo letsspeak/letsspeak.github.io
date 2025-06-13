@@ -13,13 +13,12 @@ const About: React.FC = () => {
                 <div>
                   <h2 className="text-xl font-semibold text-gray-900 mb-3">自己紹介</h2>
                   <p className="text-gray-700 leading-relaxed">
-                    AI・機械学習エンジニアとして、最新技術を活用したシステム開発に携わっています。
-                    フリーランスとして様々な案件に参画し、技術力の向上とクライアントへの価値提供を重視しています。
+                    PC-8801に触れた小学生時代からプログラミング歴は30年以上。
+                    基盤技術を押さえたうえで論理的に課題を分析し、多角的な視点からソリューションを導くことが得意です。
                   </p>
                   <p className="text-gray-700 leading-relaxed mt-4">
-                    特に、機械学習モデルの構築・最適化、Webアプリケーション開発、
-                    データ分析・可視化を得意としており、技術的な課題解決を通じて
-                    ビジネス価値の創出に貢献しています。
+                    Swift + React の SSR サイトや Next.js・AWS CDK を用いた自動化 BOT など、趣味開発でも継続的に成果を公開。
+                    近年は AI を活用した効率的な開発ワークフローの研究にも注力しています。
                   </p>
                 </div>
 
@@ -27,19 +26,19 @@ const About: React.FC = () => {
                   <h2 className="text-xl font-semibold text-gray-900 mb-3">経歴概要</h2>
                   <div className="space-y-4">
                     <div className="border-l-4 border-primary-500 pl-4">
-                      <h3 className="font-medium text-gray-900">フリーランス AI・機械学習エンジニア</h3>
-                      <p className="text-sm text-gray-600">2023年 - 現在</p>
+                      <h3 className="font-medium text-gray-900">フリーランス エンジニア</h3>
+                      <p className="text-sm text-gray-600">2019年 - 現在</p>
                       <p className="text-gray-700 mt-2">
-                        機械学習システムの構築、Webアプリケーション開発、データ分析業務に従事。
-                        React、Python、TensorFlow等を活用した開発を行っています。
+                        モバイルアプリ開発（iOS/Android）、Webアプリケーション開発、プロジェクト管理業務に従事。
+                        Swift、TypeScript、Java等を活用した開発およびチームマネジメントを行っています。
                       </p>
                     </div>
                     <div className="border-l-4 border-gray-300 pl-4">
-                      <h3 className="font-medium text-gray-900">ソフトウェアエンジニア</h3>
-                      <p className="text-sm text-gray-600">2020年 - 2023年</p>
+                      <h3 className="font-medium text-gray-900">ソフトウェアエンジニア・チームリーダー</h3>
+                      <p className="text-sm text-gray-600">2009年 - 2019年</p>
                       <p className="text-gray-700 mt-2">
-                        Web開発、システム設計・運用、チーム開発プロセスの改善に携わりました。
-                        フルスタック開発からインフラ構築まで幅広い経験を積みました。
+                        ゲーム業界でのデバッグ業務から始まり、モバイルアプリ開発、Web開発まで幅広い分野で経験を積みました。
+                        チームリーダーとして最大50名規模のプロジェクト管理も担当しました。
                       </p>
                     </div>
                   </div>
@@ -51,25 +50,25 @@ const About: React.FC = () => {
                     <div className="bg-gray-50 p-4 rounded-lg">
                       <h3 className="font-medium text-gray-900 mb-2">技術力</h3>
                       <p className="text-sm text-gray-700">
-                        AI・機械学習からWeb開発まで幅広い技術領域をカバー
+                        モバイル開発からWeb開発まで幅広い技術領域を30年以上のキャリアでカバー
                       </p>
                     </div>
                     <div className="bg-gray-50 p-4 rounded-lg">
-                      <h3 className="font-medium text-gray-900 mb-2">問題解決力</h3>
+                      <h3 className="font-medium text-gray-900 mb-2">マネジメント力</h3>
                       <p className="text-sm text-gray-700">
-                        複雑な技術課題を分析し、最適なソリューションを提案
+                        最大50名規模のチーム管理経験、多国籍チームでのプロジェクト推進
                       </p>
                     </div>
                     <div className="bg-gray-50 p-4 rounded-lg">
                       <h3 className="font-medium text-gray-900 mb-2">継続学習</h3>
                       <p className="text-sm text-gray-700">
-                        新しい技術動向をキャッチアップし、実践に活用
+                        PC-8801時代からの継続的な技術習得、最新技術への適応力
                       </p>
                     </div>
                     <div className="bg-gray-50 p-4 rounded-lg">
-                      <h3 className="font-medium text-gray-900 mb-2">コミュニケーション</h3>
+                      <h3 className="font-medium text-gray-900 mb-2">多分野経験</h3>
                       <p className="text-sm text-gray-700">
-                        技術的な内容を分かりやすく説明し、チーム連携を重視
+                        ゲーム、モバイル、Web、行政、流通、保険など多業界での開発経験
                       </p>
                     </div>
                   </div>
@@ -83,19 +82,23 @@ const About: React.FC = () => {
                 <dl className="space-y-3">
                   <div>
                     <dt className="text-sm font-medium text-gray-500">氏名</dt>
-                    <dd className="text-sm text-gray-900">大宮将嗣</dd>
+                    <dd className="text-sm text-gray-900">大宮将嗣（オオミヤ マサツグ）</dd>
                   </div>
                   <div>
-                    <dt className="text-sm font-medium text-gray-500">職種</dt>
-                    <dd className="text-sm text-gray-900">AI・機械学習エンジニア</dd>
+                    <dt className="text-sm font-medium text-gray-500">年齢</dt>
+                    <dd className="text-sm text-gray-900">39歳</dd>
                   </div>
                   <div>
                     <dt className="text-sm font-medium text-gray-500">専門分野</dt>
-                    <dd className="text-sm text-gray-900">機械学習、Web開発、データ分析</dd>
+                    <dd className="text-sm text-gray-900">モバイルアプリ開発、Web開発、プロジェクト管理</dd>
                   </div>
                   <div>
                     <dt className="text-sm font-medium text-gray-500">活動形態</dt>
                     <dd className="text-sm text-gray-900">フリーランス</dd>
+                  </div>
+                  <div>
+                    <dt className="text-sm font-medium text-gray-500">プログラミング歴</dt>
+                    <dd className="text-sm text-gray-900">30年以上</dd>
                   </div>
                 </dl>
 
