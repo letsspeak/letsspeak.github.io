@@ -21,7 +21,7 @@ const Home: React.FC = () => {
               <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
                 <div className="sm:text-center lg:text-left">
                   <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-                    <span className="block xl:inline">大宮将嗣</span>{' '}
+                    <span className="block xl:inline">letsspeak's</span>{' '}
                     <span className="block text-primary-600 xl:inline">Portfolio</span>
                   </h1>
                   <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
@@ -68,7 +68,7 @@ const Home: React.FC = () => {
               </h2>
               <div className="space-y-4">
                 <div className="border-l-4 border-primary-500 pl-4">
-                  <h3 className="text-sm font-medium text-gray-900">外国人労働者管理アプリ完了</h3>
+                  <h3 className="text-sm font-medium text-gray-900">外国人労働者勤怠管理アプリ完了</h3>
                   <p className="text-sm text-gray-500">Swift + Kotlin + NFC技術を活用した勤怠管理システムの開発を完了しました。</p>
                   <p className="text-xs text-gray-400 mt-1">2025年6月</p>
                 </div>

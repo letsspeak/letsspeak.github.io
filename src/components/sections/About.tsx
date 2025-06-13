@@ -13,6 +13,9 @@ const About: React.FC = () => {
                 <div className="space-y-6">
                   <div>
                     <h2 className="text-xl font-semibold text-gray-900 mb-3">自己紹介</h2>
+                    <p className="text-gray-700 leading-relaxed mb-3">
+                      <strong>大宮将嗣（オオミヤ マサツグ）</strong>と申します。
+                    </p>
                     <p className="text-gray-700 leading-relaxed">
                       PC-8801に触れた小学生時代からプログラミング歴は30年以上。
                       基盤技術を押さえたうえで論理的に課題を分析し、多角的な視点からソリューションを導くことが得意です。
@@ -117,6 +120,12 @@ const About: React.FC = () => {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                         技術ブログ
+                      </a>
+                      <a href="https://twitter.com/letsspeak" target="_blank" rel="noopener noreferrer" className="flex items-center text-primary-600 hover:text-primary-500">
+                        <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                        Twitter
                       </a>
                     </div>
                   </div>

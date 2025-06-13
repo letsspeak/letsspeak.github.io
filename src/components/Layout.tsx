@@ -64,7 +64,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </div>
       </div>
       
-      <nav className="bg-white shadow-sm fixed top-10 left-0 right-0 z-40">
+      <nav className="bg-white shadow-sm fixed top-9 left-0 right-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex">
@@ -73,7 +73,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   onClick={() => scrollToSection('home')}
                   className="text-xl font-bold text-gray-900 hover:text-gray-700"
                 >
-                  大宮将嗣
+                  letsspeak
                 </button>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
@@ -121,7 +121,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
             <p className="text-gray-500 text-sm">
-              © 2024 大宮将嗣. All rights reserved.
+              © 2025 letsspeak. All rights reserved.
             </p>
             <div className="flex space-x-6">
               <a href="https://blog.lsklab.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-500">

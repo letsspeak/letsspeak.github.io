@@ -17,7 +17,16 @@
       "Bash(npm run deploy:*)",
       "Bash(git fetch:*)",
       "Bash(git pull:*)",
-      "Bash(git merge:*)"
+      "Bash(git merge:*)",
+      "Bash(npm run dev:*)",
+      "Bash(open http://localhost:5173/)",
+      "Bash(pkill:*)",
+      "Bash(lsof:*)",
+      "Bash(npx vite:*)",
+      "Bash(rm:*)",
+      "Bash(kill:*)",
+      "Bash(grep:*)",
+      "Bash(mv:*)"
     ],
     "deny": []
   }

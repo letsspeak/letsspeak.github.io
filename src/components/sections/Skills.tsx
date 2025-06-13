@@ -14,61 +14,54 @@ const Skills: React.FC = () => {
     {
       name: 'モバイル開発',
       skills: [
-        { name: 'Swift', level: 95, experience: '8年' },
-        { name: 'iOS', level: 95, experience: '8年' },
-        { name: 'Kotlin', level: 85, experience: '4年' },
-        { name: 'Android', level: 85, experience: '6年' },
-        { name: 'Objective-C', level: 80, experience: '5年' },
-        { name: 'UIKit', level: 90, experience: '8年' },
-        { name: 'Core Data', level: 85, experience: '6年' },
+        { name: 'Swift', level: 95, experience: '6年' },
+        { name: 'iOS', level: 95, experience: '9年' },
+        { name: 'Kotlin', level: 85, experience: '1年' },
+        { name: 'Android', level: 85, experience: '3年' },
+        { name: 'Objective-C', level: 80, experience: '3年' },
+        { name: 'UIKit', level: 90, experience: '6年' },
       ]
     },
     {
       name: 'Web開発（フロントエンド）',
       skills: [
-        { name: 'TypeScript', level: 90, experience: '5年' },
+        { name: 'TypeScript', level: 90, experience: '2年' },
         { name: 'JavaScript', level: 95, experience: '10年' },
-        { name: 'React', level: 85, experience: '4年' },
-        { name: 'Vue', level: 80, experience: '3年' },
-        { name: 'Next.js', level: 75, experience: '2年' },
-        { name: 'jQuery', level: 85, experience: '8年' },
-        { name: 'HTML/CSS', level: 90, experience: '12年' },
+        { name: 'React', level: 85, experience: '3年' },
+        { name: 'Vue', level: 80, experience: '2年' },
+        { name: 'jQuery', level: 85, experience: '5年' },
+        { name: 'HTML/CSS', level: 90, experience: '10年' },
       ]
     },
     {
       name: 'Web開発（バックエンド）',
       skills: [
-        { name: 'Java', level: 90, experience: '8年' },
-        { name: 'Spring', level: 85, experience: '6年' },
-        { name: 'PHP', level: 85, experience: '7年' },
-        { name: 'Laravel', level: 80, experience: '4年' },
-        { name: 'Ruby', level: 80, experience: '5年' },
-        { name: 'Rails', level: 75, experience: '4年' },
-        { name: 'C#', level: 75, experience: '4年' },
+        { name: 'Java', level: 90, experience: '4年' },
+        { name: 'Spring', level: 85, experience: '2年' },
+        { name: 'PHP', level: 85, experience: '1年' },
+        { name: 'Laravel', level: 80, experience: '3年' },
+        { name: 'Rails', level: 75, experience: '1年' },
+        { name: 'C#', level: 75, experience: '1年' },
       ]
     },
     {
       name: 'データベース・インフラ',
       skills: [
-        { name: 'MySQL', level: 90, experience: '10年' },
-        { name: 'PostgreSQL', level: 80, experience: '6年' },
-        { name: 'Redis', level: 75, experience: '4年' },
-        { name: 'AWS', level: 85, experience: '6年' },
-        { name: 'Docker', level: 80, experience: '5年' },
-        { name: 'Linux', level: 85, experience: '12年' },
-        { name: 'Git', level: 95, experience: '15年' },
+        { name: 'MySQL', level: 90, experience: '8年' },
+        { name: 'PostgreSQL', level: 80, experience: '2年' },
+        { name: 'AWS', level: 85, experience: '5年' },
+        { name: 'Docker', level: 80, experience: '3年' },
+        { name: 'Linux', level: 85, experience: '10年' },
+        { name: 'Git', level: 95, experience: '13年' },
       ]
     },
     {
       name: 'その他技術・ツール',
       skills: [
-        { name: 'NFC', level: 80, experience: '2年' },
-        { name: 'Jenkins', level: 75, experience: '5年' },
-        { name: 'Appium', level: 70, experience: '3年' },
-        { name: 'cocos2d', level: 75, experience: '3年' },
+        { name: 'NFC', level: 80, experience: '1年' },
+        { name: 'Jenkins', level: 75, experience: '3年' },
         { name: 'Firebase', level: 75, experience: '4年' },
         { name: 'Vim', level: 90, experience: '15年' },
-        { name: 'Eclipse', level: 80, experience: '8年' },
       ]
     }
   ]

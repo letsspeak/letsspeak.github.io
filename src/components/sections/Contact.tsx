@@ -32,7 +32,7 @@ const Contact: React.FC = () => {
                       </svg>
                     </div>
                     <div className="ml-4">
-                      <h3 className="text-lg font-medium text-gray-900">メール</h3>
+                      <h3 className="text-lg text-gray-900">メール</h3>
                       <p className="text-gray-600">contact@lsklab.com</p>
                     </div>
                   </div>
@@ -44,7 +44,7 @@ const Contact: React.FC = () => {
                       </svg>
                     </div>
                     <div className="ml-4">
-                      <h3 className="text-lg font-medium text-gray-900">GitHub</h3>
+                      <h3 className="text-lg text-gray-900">GitHub</h3>
                       <a href="https://github.com/letsspeak" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-500">
                         github.com/letsspeak
                       </a>
@@ -58,9 +58,23 @@ const Contact: React.FC = () => {
                       </svg>
                     </div>
                     <div className="ml-4">
-                      <h3 className="text-lg font-medium text-gray-900">技術ブログ</h3>
+                      <h3 className="text-lg text-gray-900">技術ブログ</h3>
                       <a href="https://blog.lsklab.com" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-500">
                         blog.lsklab.com
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <svg className="w-6 h-6 text-primary-600" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                      </svg>
+                    </div>
+                    <div className="ml-4">
+                      <h3 className="text-lg text-gray-900">Twitter</h3>
+                      <a href="https://twitter.com/letsspeak" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-500">
+                        @letsspeak
                       </a>
                     </div>
                   </div>

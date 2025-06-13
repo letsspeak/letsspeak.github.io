@@ -37,7 +37,7 @@ export const projects: Project[] = [
   },
   {
     id: 'foreign-worker-app',
-    title: '外国人労働者 登録・勤怠管理アプリ',
+    title: '外国人労働者 勤怠管理アプリ',
     description: 'Swift + Kotlin + NFC技術を活用したマルチプラットフォーム勤怠管理システム',
     longDescription: 'iOS/Androidアプリおよびバックエンドシステムの開発において、仕様策定からNFC読み取りロジック実装まで技術的リーダーシップを発揮。多国籍チームのタスク管理と技術支援を担当しました。',
     technologies: ['Swift', 'Kotlin', 'Laravel', 'Vue3', 'NFC', 'PHP'],
