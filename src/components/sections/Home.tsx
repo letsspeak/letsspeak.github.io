@@ -84,9 +84,12 @@ const Home: React.FC = () => {
                 </div>
               </div>
               <div className="mt-6">
-                <a href="https://blog.lsklab.com" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-500 text-sm font-medium">
-                  ブログで詳細を見る →
-                </a>
+                <button 
+                  onClick={() => scrollToSection('projects')}
+                  className="text-primary-600 hover:text-primary-500 text-sm font-medium"
+                >
+                  プロジェクト一覧を見る →
+                </button>
               </div>
             </div>
           </div>
