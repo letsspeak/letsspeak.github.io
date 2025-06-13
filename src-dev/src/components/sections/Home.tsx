@@ -4,7 +4,7 @@ const Home: React.FC = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
-      const offsetTop = element.offsetTop - 80
+      const offsetTop = element.offsetTop - 120
       window.scrollTo({
         top: offsetTop,
         behavior: 'smooth'
@@ -13,7 +13,7 @@ const Home: React.FC = () => {
   }
 
   return (
-    <section id="home" className="min-h-screen bg-gray-50 flex items-center -mt-32 pt-32">
+    <section id="home" className="min-h-screen bg-gray-50 flex items-center -mt-30 pt-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="relative bg-white overflow-hidden rounded-lg shadow-sm">
           <div className="max-w-7xl mx-auto">

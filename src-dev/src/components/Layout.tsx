@@ -41,7 +41,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
-      const offsetTop = element.offsetTop - 80 // ヘッダーの高さを考慮
+      const offsetTop = element.offsetTop - 120 // バナー + ナビゲーションの高さを考慮
       window.scrollTo({
         top: offsetTop,
         behavior: 'smooth'
@@ -64,7 +64,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </div>
       </div>
       
-      <nav className="bg-white shadow-sm fixed top-16 left-0 right-0 z-40">
+      <nav className="bg-white shadow-sm fixed top-14 left-0 right-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex">
@@ -113,7 +113,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </div>
       </nav>
 
-      <main className="pt-32">
+      <main className="pt-30">
         {children}
       </main>
 
