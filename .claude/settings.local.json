@@ -28,7 +28,13 @@
       "Bash(grep:*)",
       "Bash(mv:*)",
       "Bash(mkdir:*)",
-      "Bash(chmod:*)"
+      "Bash(chmod:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm run preview:*)",
+      "Bash(git clean:*)",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(cp:*)"
     ],
     "deny": []
   }
