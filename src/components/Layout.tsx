@@ -1,25 +1,58 @@
-import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
 
 interface LayoutProps {
   children: React.ReactNode
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const location = useLocation()
+  const [activeSection, setActiveSection] = useState('home')
 
   const navigation = [
-    { name: 'ホーム', href: '/', current: location.pathname === '/' },
-    { name: 'プロフィール', href: '/about', current: location.pathname === '/about' },
-    { name: 'スキル', href: '/skills', current: location.pathname === '/skills' },
-    { name: 'プロジェクト', href: '/projects', current: location.pathname === '/projects' },
-    { name: 'お問い合わせ', href: '/contact', current: location.pathname === '/contact' },
+    { name: 'ホーム', href: '#home', id: 'home' },
+    { name: 'プロフィール', href: '#about', id: 'about' },
+    { name: 'スキル', href: '#skills', id: 'skills' },
+    { name: 'プロジェクト', href: '#projects', id: 'projects' },
+    { name: 'お問い合わせ', href: '#contact', id: 'contact' },
   ]
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        })
+      },
+      {
+        threshold: 0.3,
+        rootMargin: '-80px 0px -80px 0px'
+      }
+    )
+
+    navigation.forEach(({ id }) => {
+      const element = document.getElementById(id)
+      if (element) observer.observe(element)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      const offsetTop = element.offsetTop - 80 // ヘッダーの高さを考慮
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      })
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* プロトタイプ警告バナー */}
-      <div className="bg-yellow-500 text-black py-2 px-4 text-center text-sm font-medium">
+      <div className="bg-yellow-500 text-black py-2 px-4 text-center text-sm font-medium fixed top-0 left-0 right-0 z-50">
         <div className="max-w-7xl mx-auto flex items-center justify-center space-x-2">
           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
@@ -31,28 +64,31 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </div>
       </div>
       
-      <nav className="bg-white shadow-sm">
+      <nav className="bg-white shadow-sm fixed top-16 left-0 right-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex">
               <div className="flex-shrink-0 flex items-center">
-                <Link to="/" className="text-xl font-bold text-gray-900">
+                <button
+                  onClick={() => scrollToSection('home')}
+                  className="text-xl font-bold text-gray-900 hover:text-gray-700"
+                >
                   大宮将嗣
-                </Link>
+                </button>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                 {navigation.map((item) => (
-                  <Link
+                  <button
                     key={item.name}
-                    to={item.href}
+                    onClick={() => scrollToSection(item.id)}
                     className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
-                      item.current
+                      activeSection === item.id
                         ? 'border-primary-500 text-gray-900'
                         : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
                     }`}
                   >
                     {item.name}
-                  </Link>
+                  </button>
                 ))}
               </div>
             </div>
@@ -77,7 +113,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </div>
       </nav>
 
-      <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <main className="pt-32">
         {children}
       </main>
 
