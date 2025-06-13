@@ -13,9 +13,16 @@ const About: React.FC = () => {
                 <div className="space-y-6">
                   <div>
                     <h2 className="text-xl font-semibold text-gray-900 mb-3">自己紹介</h2>
-                    <p className="text-gray-700 leading-relaxed mb-3">
-                      <strong>大宮将嗣（オオミヤ マサツグ）</strong>と申します。
-                    </p>
+                    <div className="mb-4">
+                      <img 
+                        src="https://github.com/letsspeak.png" 
+                        alt="letsspeak profile" 
+                        className="w-16 h-16 rounded-full shadow-md mb-4"
+                      />
+                      <p className="text-gray-700 leading-relaxed mb-3">
+                        <strong>大宮将嗣（オオミヤ マサツグ）</strong>と申します。
+                      </p>
+                    </div>
                     <p className="text-gray-700 leading-relaxed">
                       PC-8801に触れた小学生時代からプログラミング歴は30年以上。
                       基盤技術を押さえたうえで論理的に課題を分析し、多角的な視点からソリューションを導くことが得意です。
@@ -99,6 +106,10 @@ const About: React.FC = () => {
                     <div>
                       <dt className="text-sm font-medium text-gray-500">活動形態</dt>
                       <dd className="text-sm text-gray-900">フリーランス</dd>
+                    </div>
+                    <div>
+                      <dt className="text-sm font-medium text-gray-500">実務経験</dt>
+                      <dd className="text-sm text-gray-900">16年</dd>
                     </div>
                     <div>
                       <dt className="text-sm font-medium text-gray-500">プログラミング歴</dt>
