@@ -77,12 +77,198 @@ letsspeak.github.io/
 
 ---
 
+## 🔐 IAM ポリシー定義
+
+### デプロイユーザー用ポリシー
+
+デプロイスクリプト (`deploy-contact-form.sh`) を実行するIAMユーザーに必要な権限：
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "LambdaDeploymentPermissions",
+      "Effect": "Allow",
+      "Action": [
+        "lambda:CreateFunction",
+        "lambda:UpdateFunctionCode",
+        "lambda:UpdateFunctionConfiguration",
+        "lambda:GetFunction",
+        "lambda:ListFunctions",
+        "lambda:TagResource",
+        "lambda:UntagResource",
+        "lambda:AddPermission",
+        "lambda:RemovePermission",
+        "lambda:GetPolicy"
+      ],
+      "Resource": [
+        "arn:aws:lambda:ap-northeast-1:*:function:contact-form-handler",
+        "arn:aws:lambda:ap-northeast-1:*:function:contact-form-handler:*"
+      ]
+    },
+    {
+      "Sid": "IAMRoleManagement",
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreateRole",
+        "iam:GetRole",
+        "iam:ListRoles",
+        "iam:PassRole",
+        "iam:AttachRolePolicy",
+        "iam:DetachRolePolicy",
+        "iam:ListAttachedRolePolicies",
+        "iam:TagRole",
+        "iam:UntagRole"
+      ],
+      "Resource": [
+        "arn:aws:iam::*:role/lambda-contact-form-role"
+      ]
+    },
+    {
+      "Sid": "IAMPolicyAccess",
+      "Effect": "Allow",
+      "Action": [
+        "iam:GetPolicy",
+        "iam:ListPolicies"
+      ],
+      "Resource": [
+        "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+        "arn:aws:iam::aws:policy/AmazonSESFullAccess"
+      ]
+    },
+    {
+      "Sid": "APIGatewayPermissions",
+      "Effect": "Allow",
+      "Action": [
+        "apigateway:GET",
+        "apigateway:POST",
+        "apigateway:PUT",
+        "apigateway:DELETE",
+        "apigateway:PATCH"
+      ],
+      "Resource": [
+        "arn:aws:apigateway:ap-northeast-1::/restapis",
+        "arn:aws:apigateway:ap-northeast-1::/restapis/*"
+      ]
+    },
+    {
+      "Sid": "SESPermissions",
+      "Effect": "Allow",
+      "Action": [
+        "ses:GetIdentityVerificationAttributes",
+        "ses:ListIdentities",
+        "ses:VerifyEmailIdentity"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "CallerIdentityAccess",
+      "Effect": "Allow",
+      "Action": [
+        "sts:GetCallerIdentity"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+### Lambda実行ロール用ポリシー
+
+Lambda関数 (`contact-form-handler`) の実行時に必要な権限（自動作成される `lambda-contact-form-role` に付与）：
+
+**信頼ポリシー (Trust Policy)**
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "lambda.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+```
+
+**実行権限ポリシー (Permission Policy)**
+
+1. **基本実行権限** (AWS管理ポリシー: `AWSLambdaBasicExecutionRole`)
+   ```json
+   {
+     "Version": "2012-10-17",
+     "Statement": [
+       {
+         "Effect": "Allow",
+         "Action": [
+           "logs:CreateLogGroup",
+           "logs:CreateLogStream",
+           "logs:PutLogEvents"
+         ],
+         "Resource": "arn:aws:logs:*:*:*"
+       }
+     ]
+   }
+   ```
+
+2. **SESメール送信権限** (カスタムポリシー推奨)
+   ```json
+   {
+     "Version": "2012-10-17",
+     "Statement": [
+       {
+         "Sid": "SESEmailSendingPermissions",
+         "Effect": "Allow",
+         "Action": [
+           "ses:SendEmail",
+           "ses:SendRawEmail"
+         ],
+         "Resource": [
+           "arn:aws:ses:ap-northeast-1:*:identity/contact@lsklab.com"
+         ]
+       },
+       {
+         "Sid": "SESConfigurationAccess",
+         "Effect": "Allow",
+         "Action": [
+           "ses:GetSendQuota",
+           "ses:GetSendStatistics",
+           "ses:GetIdentityVerificationAttributes"
+         ],
+         "Resource": "*"
+       }
+     ]
+   }
+   ```
+
+### セキュリティ考慮事項
+
+#### 最小権限の原則
+- デプロイユーザーには必要最小限の権限のみ付与
+- Lambda実行ロールには `AmazonSESFullAccess` ではなく、カスタムポリシーでSES権限を制限
+
+#### リソース制限
+- Lambda関数名とIAMロール名を固定化
+- SESアイデンティティを特定メールアドレスに制限
+- API Gatewayリソースをリージョンと関数に限定
+
+#### アカウントセキュリティ
+- AWS CLIユーザーにはMFAの有効化を推奨
+- デプロイ用アクセスキーの定期的なローテーション
+- CloudTrailでAPIコールの監査ログを記録
+
+---
+
 ## ✅ 注意点
 
-* Lambda IAM は SES 送信権限を持つこと (AmazonSESFullAccess)
-* SES の送信元・送信先メールは事前に証明
-* CloudWatch Logs の余分な保存を防ぐ
-* API Gateway は CORS 完全対応 (Access-Control-Allow-Origin)
+* Lambda IAM ロールには SES 送信権限を付与すること
+* SES の送信元・送信先メールは事前に検証 (Verify) すること
+* CloudWatch Logs の保存期間を適切に設定すること
+* API Gateway は CORS 完全対応 (Access-Control-Allow-Origin) すること
+* 本番環境では SES サンドボックスの制限解除を申請すること
 
 ---
 

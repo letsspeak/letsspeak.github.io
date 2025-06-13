@@ -77,48 +77,132 @@ npm run deploy
 
 お問い合わせフォーム機能はAWS Lambda + API Gateway + SESで実装されています。
 
-#### 事前準備
+#### 📋 事前準備
 
-1. **AWSアカウントの設定**
+1. **AWS CLIのインストールと設定**
    ```bash
+   # AWS CLIのインストール（未インストールの場合）
+   # macOS: brew install awscli
+   # Windows: AWS公式サイトからダウンロード
+   
    # AWS CLIの設定
    aws configure
+   # AWS Access Key ID、Secret Access Key、リージョン（ap-northeast-1推奨）を入力
    ```
 
-2. **環境変数の設定**
+2. **IAM権限の確認**
+   
+   AWS CLIで使用するIAMユーザーに以下の権限が必要です：
+   - `AWSLambdaFullAccess` (Lambda関数の作成・更新)
+   - `IAMFullAccess` (IAMロールの作成)
+   - `AmazonAPIGatewayAdministrator` (API Gateway設定)
+   - `AmazonSESFullAccess` (SESの利用)
+
+3. **Amazon SESの事前設定**
+   
    ```bash
-   cd lambda/contact-form
-   cp .env.sample .env
-   # .envファイルを編集してメールアドレスなどを設定
+   # AWSコンソールでSESにアクセス
+   # 1. リージョンをap-northeast-1（東京）に設定
+   # 2. 以下のメールアドレスを検証（Verify）
    ```
+   
+   検証が必要なメールアドレス：
+   - **送信元**: `contact@lsklab.com`
+   - **受信先**: `contact@lsklab.com` (または実際の受信用メール)
+   
+   **重要**: SESサンドボックス環境では検証済みメールアドレス間でのみ送信可能
 
-3. **Amazon SESの設定**
-   - AWSコンソールでSESにアクセス
-   - 送信元メールアドレス（FROM_EMAIL）を検証
-   - 受信先メールアドレス（TO_EMAIL）を検証
-   - 本番環境では送信制限解除を申請
+#### 🚀 Lambda関数のデプロイ
 
-#### Lambda関数のデプロイ
+**ステップ1**: プロジェクトルートから実行
 
 ```bash
+# プロジェクトルートにいることを確認
+pwd  # /path/to/letsspeak.github.io
+
 # デプロイスクリプトの実行
-cd scripts
-./deploy-contact-form.sh
+./scripts/deploy-contact-form.sh
 ```
 
-#### API Gatewayの設定
+**ステップ2**: デプロイ結果の確認
 
-1. AWSコンソールでAPI Gatewayにアクセス
-2. `scripts/api-gateway-setup.json`を使用してAPIを作成
-3. Lambda関数との統合を設定
-4. CORSを有効化
-5. APIをデプロイしてエンドポイントURLを取得
+デプロイが成功すると以下が自動作成されます：
+- IAMロール: `lambda-contact-form-role`
+- Lambda関数: `contact-form-handler`
+- 必要な権限の設定
 
-#### フロントエンドとの連携
+#### 🌐 API Gateway設定（手動）
 
-API GatewayのエンドポイントURLを取得後、フロントエンドのお問い合わせフォームで使用します。
+Lambda関数のデプロイ後、AWS コンソールで API Gateway を設定します：
 
-詳細な手順は `lambda/contact-form/README.md` を参照してください。
+**ステップ1**: API作成
+1. AWS コンソール → API Gateway
+2. 「REST API」を選択
+3. API名: `contact-form-api`
+4. リージョン: `ap-northeast-1`
+
+**ステップ2**: リソース作成
+1. ルートリソース（/）を選択
+2. 「アクション」→「リソースの作成」
+3. リソース名: `contact`
+4. リソースパス: `/contact`
+
+**ステップ3**: メソッド作成
+1. `/contact` リソースを選択
+2. 「アクション」→「メソッドの作成」
+3. `POST` を選択
+4. 統合タイプ: Lambda プロキシ統合
+5. Lambda 関数: `contact-form-handler`
+
+**ステップ4**: CORS設定
+1. `/contact` リソースを選択
+2. 「アクション」→「CORS の有効化」
+3. 以下を設定：
+   ```
+   Access-Control-Allow-Origin: https://letsspeak.github.io,https://lsklab.com
+   Access-Control-Allow-Headers: Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token
+   Access-Control-Allow-Methods: POST,OPTIONS
+   ```
+
+**ステップ5**: デプロイ
+1. 「アクション」→「API のデプロイ」
+2. デプロイされるステージ: `prod`
+3. エンドポイントURLをメモ（例: `https://xxxxxxxxxx.execute-api.ap-northeast-1.amazonaws.com/prod`）
+
+#### 🔗 フロントエンドとの連携
+
+現在、フロントエンドのお問い合わせフォームはまだ実装されていません。
+API Gatewayのエンドポイントが取得できたら、お問い合わせフォームコンポーネントで以下のように使用します：
+
+```typescript
+// 例: Contact.tsx での利用
+const API_ENDPOINT = 'https://xxxxxxxxxx.execute-api.ap-northeast-1.amazonaws.com/prod/contact';
+
+const submitForm = async (formData) => {
+  const response = await fetch(API_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(formData)
+  });
+  return response.json();
+};
+```
+
+#### 🧪 テスト方法
+
+デプロイ後、以下のコマンドでテスト可能：
+
+```bash
+curl -X POST https://xxxxxxxxxx.execute-api.ap-northeast-1.amazonaws.com/prod/contact \
+  -H "Content-Type: application/json" \
+  -d '{"name":"テスト太郎","email":"test@example.com","message":"テストメッセージです"}'
+```
+
+#### 📚 詳細ドキュメント
+
+より詳細な情報は以下を参照：
+- `lambda/contact-form/README.md` - Lambda関数の詳細
+- `scripts/api-gateway-setup.json` - API Gateway設定の参考
 
 ## 📄 ライセンス
 

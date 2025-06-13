@@ -29,6 +29,7 @@ const validateInput = (data: any): data is ContactFormData => {
 const createCorsHeaders = (origin?: string) => {
   const allowedOrigins = [
     'https://letsspeak.github.io',
+    'https://lsklab.com',
     'http://localhost:5173',
     'http://localhost:5174'
   ]

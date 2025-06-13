@@ -75,7 +75,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   onClick={() => scrollToSection('home')}
                   className="text-xl font-bold text-gray-900 hover:text-gray-700"
                 >
-                  letsspeak
+                  lsk<span className="text-red-700">Lab</span>
                 </button>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
