@@ -127,7 +127,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 © 2025 letsspeak. All rights reserved.
               </p>
               <p className="text-gray-400 text-xs mt-1">
-                Built with Claude Code ⚡
+                Built with Claude Code ⚡ 
               </p>
             </div>
             <div className="flex space-x-6">
