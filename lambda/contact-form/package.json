@@ -1,0 +1,31 @@
+{
+  "name": "contact-form-lambda",
+  "version": "1.0.0",
+  "description": "AWS Lambda function for handling contact form submissions",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "package": "npm run build && zip -r contact-form.zip dist/ node_modules/",
+    "deploy": "../scripts/deploy-contact-form.sh"
+  },
+  "keywords": [
+    "aws",
+    "lambda",
+    "contact-form",
+    "ses"
+  ],
+  "author": "letsspeak",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-sesv2": "^3.470.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.131",
+    "@types/node": "^20.10.5",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

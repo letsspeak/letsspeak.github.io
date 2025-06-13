@@ -61,10 +61,64 @@ src/
 
 ## 🚢 デプロイ
 
+### フロントエンド (GitHub Pages)
+
 本サイトはGitHub Pagesを使用してデプロイされています。
 
 - **本番URL**: https://letsspeak.github.io
 - **カスタムドメイン**: https://lsklab.com (設定予定)
+
+```bash
+# フロントエンドのデプロイ
+npm run deploy
+```
+
+### バックエンド (AWS Lambda)
+
+お問い合わせフォーム機能はAWS Lambda + API Gateway + SESで実装されています。
+
+#### 事前準備
+
+1. **AWSアカウントの設定**
+   ```bash
+   # AWS CLIの設定
+   aws configure
+   ```
+
+2. **環境変数の設定**
+   ```bash
+   cd lambda/contact-form
+   cp .env.sample .env
+   # .envファイルを編集してメールアドレスなどを設定
+   ```
+
+3. **Amazon SESの設定**
+   - AWSコンソールでSESにアクセス
+   - 送信元メールアドレス（FROM_EMAIL）を検証
+   - 受信先メールアドレス（TO_EMAIL）を検証
+   - 本番環境では送信制限解除を申請
+
+#### Lambda関数のデプロイ
+
+```bash
+# デプロイスクリプトの実行
+cd scripts
+./deploy-contact-form.sh
+```
+
+#### API Gatewayの設定
+
+1. AWSコンソールでAPI Gatewayにアクセス
+2. `scripts/api-gateway-setup.json`を使用してAPIを作成
+3. Lambda関数との統合を設定
+4. CORSを有効化
+5. APIをデプロイしてエンドポイントURLを取得
+
+#### フロントエンドとの連携
+
+API GatewayのエンドポイントURLを取得後、フロントエンドのお問い合わせフォームで使用します。
+
+詳細な手順は `lambda/contact-form/README.md` を参照してください。
 
 ## 📄 ライセンス
 

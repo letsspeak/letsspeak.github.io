@@ -1,0 +1,136 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "letsspeak Contact API",
+    "description": "API for handling contact form submissions",
+    "version": "1.0.0"
+  },
+  "host": "api.gateway.endpoint.amazonaws.com",
+  "schemes": ["https"],
+  "basePath": "/prod",
+  "produces": ["application/json"],
+  "paths": {
+    "/contact": {
+      "post": {
+        "summary": "Submit contact form",
+        "description": "Submits a contact form and sends email via SES",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "contactData",
+            "description": "Contact form data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["name", "email", "message"],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Sender's name"
+                },
+                "email": {
+                  "type": "string",
+                  "format": "email",
+                  "description": "Sender's email address"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Contact message"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "ok"
+                }
+              }
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "type": "aws_proxy",
+          "httpMethod": "POST",
+          "uri": "arn:aws:apigateway:ap-northeast-1:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-northeast-1:ACCOUNT_ID:function:letsspeak-contact-form/invocations",
+          "passthroughBehavior": "when_no_match",
+          "contentHandling": "CONVERT_TO_TEXT"
+        }
+      },
+      "options": {
+        "summary": "CORS preflight",
+        "description": "Handle CORS preflight requests",
+        "responses": {
+          "200": {
+            "description": "CORS response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "type": "mock",
+          "requestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "responses": {
+            "default": {
+              "statusCode": "200",
+              "responseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'https://letsspeak.github.io'",
+                "method.response.header.Access-Control-Allow-Methods": "'POST,OPTIONS'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Requested-With'"
+              },
+              "responseTemplates": {
+                "application/json": ""
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
