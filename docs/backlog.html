@@ -40,49 +40,43 @@
     <tbody>
       <tr>
         <td class="pri pri-high">高</td>
-        <td>1. 「詳細を見る」で URL が変わらない問題</td>
-        <td>SPA でプロジェクトの「詳細を見る」を押しても URL が変わらないため、ブラウザの「戻る」を押すと想定外の挙動になる。React Router のルート（例: <code>/projects/:id</code>）または履歴操作で、戻るが期待どおり動くようにする。</td>
-        <td class="loc"><code>src/App.tsx</code><br><code>src/components/sections/Projects.tsx</code></td>
-      </tr>
-      <tr>
-        <td class="pri pri-high">高</td>
-        <td>2. 掲載情報を 2026 年 10 月時点に更新</td>
+        <td>1. 掲載情報を 2026 年 10 月時点に更新</td>
         <td>スキル一覧、経歴、プロジェクト実績などの内容を 2026 年 10 月時点の実態に合わせて書き直す。</td>
         <td class="loc"><code>src/components/sections/Skills.tsx</code><br><code>src/components/sections/About.tsx</code><br><code>src/data/projects.ts</code></td>
       </tr>
       <tr>
         <td class="pri pri-high">高</td>
-        <td>3. プロトタイプ帯の解除</td>
+        <td>2. プロトタイプ帯の解除</td>
         <td>全ページ上部の黄色い「プロトタイプサイト」バナーと、タイトルの「【プロトタイプ】」を外す。あわせてサンプルデータや仮の文言など、プロトタイプ前提になっている箇所を洗い出して修正する。</td>
         <td class="loc"><code>src/components/Layout.tsx</code><br><code>src/index.html</code><br><code>src/data/projects.ts</code> ほか</td>
       </tr>
       <tr>
         <td class="pri pri-mid">中</td>
-        <td>4. プロジェクト詳細ページ</td>
-        <td>要件定義では一覧＋詳細の構成だが、現在は単一ページのスクロール構成で詳細ページはない。必要かを再検討する。「詳細を見る」の URL 問題と合わせて設計する。</td>
+        <td>3. プロジェクト詳細ページ</td>
+        <td>要件定義では一覧＋詳細の構成だが、現在は単一ページのスクロール構成で詳細ページはない。必要かを再検討する。詳細表示は <code>#projects/&lt;id&gt;</code> の URL で履歴に積む実装済みなので、それを拡張する形で検討する。</td>
         <td class="loc"><code>src/components/sections/Projects.tsx</code></td>
       </tr>
       <tr>
         <td class="pri pri-mid">中</td>
-        <td>5. SEO / OGP</td>
+        <td>4. SEO / OGP</td>
         <td>要件定義にある title・meta description・OGP が未設定。プロトタイプ帯の解除と同時にやる。</td>
         <td class="loc"><code>src/index.html</code></td>
       </tr>
       <tr>
         <td class="pri pri-mid">中</td>
-        <td>6. サイトアイコンの更新</td>
+        <td>5. サイトアイコンの更新</td>
         <td>favicon が Vite のデフォルト（vite.svg）のまま。lskLab 用のアイコンに差し替える。</td>
         <td class="loc"><code>public/vite.svg</code><br><code>src/index.html</code></td>
       </tr>
       <tr>
         <td class="pri pri-low">低</td>
-        <td>7. 年齢表示の扱い</td>
+        <td>6. 年齢表示の扱い</td>
         <td>固定値だった年齢行は 2026-10-21 に削除済み。表示を戻すなら生年を定数にして自動計算にする（実務経験は <code>CAREER_START_YEAR</code> から自動計算済み）。</td>
         <td class="loc"><code>src/components/sections/About.tsx</code></td>
       </tr>
       <tr>
         <td class="pri pri-low">低</td>
-        <td>8. 言語切り替え（日英）</td>
+        <td>7. 言語切り替え（日英）</td>
         <td>要件定義にあるが未実装。</td>
         <td class="loc">—</td>
       </tr>

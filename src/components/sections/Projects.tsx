@@ -1,8 +1,53 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { projects } from '../../data/projects'
 
+// 詳細表示中は URL を #projects/<id> にして、ブラウザの「戻る」で一覧に戻れるようにする
+const HASH_PREFIX = '#projects/'
+
+const projectIdFromHash = (): string | null => {
+  const hash = window.location.hash
+  if (!hash.startsWith(HASH_PREFIX)) return null
+  const id = decodeURIComponent(hash.slice(HASH_PREFIX.length))
+  return projects.some((p) => p.id === id) ? id : null
+}
+
+const scrollToProjects = () => {
+  const element = document.getElementById('projects')
+  if (element) {
+    window.scrollTo({ top: element.offsetTop - 96, behavior: 'smooth' })
+  }
+}
+
 const Projects: React.FC = () => {
-  const [selectedProject, setSelectedProject] = useState<string | null>(null)
+  const [selectedProject, setSelectedProject] = useState<string | null>(projectIdFromHash)
+
+  // 戻る / 進む で URL が変わったら表示を同期する
+  useEffect(() => {
+    const syncFromHash = () => {
+      setSelectedProject(projectIdFromHash())
+      if (window.location.hash.startsWith('#projects')) scrollToProjects()
+    }
+    window.addEventListener('popstate', syncFromHash)
+    return () => window.removeEventListener('popstate', syncFromHash)
+  }, [])
+
+  // 初回表示が #projects/<id> 付きならプロジェクト一覧の位置までスクロールする
+  useEffect(() => {
+    if (projectIdFromHash()) scrollToProjects()
+  }, [])
+
+  // 一覧 → 詳細 → 一覧 をそれぞれ履歴に積む。ブラウザの戻る/進むは popstate で同期される
+  const openProject = (id: string) => {
+    window.history.pushState(null, '', `${HASH_PREFIX}${encodeURIComponent(id)}`)
+    setSelectedProject(id)
+    scrollToProjects()
+  }
+
+  const closeProject = () => {
+    window.history.pushState(null, '', '#projects')
+    setSelectedProject(null)
+    scrollToProjects()
+  }
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -69,7 +114,7 @@ const Projects: React.FC = () => {
 
                       <div className="flex justify-between items-center">
                         <button
-                          onClick={() => setSelectedProject(project.id)}
+                          onClick={() => openProject(project.id)}
                           className="text-primary-600 hover:text-primary-500 text-sm font-medium"
                         >
                           詳細を見る →
@@ -129,7 +174,7 @@ const Projects: React.FC = () => {
               <div>
                 <div className="mb-6">
                   <button
-                    onClick={() => setSelectedProject(null)}
+                    onClick={closeProject}
                     className="inline-flex items-center text-primary-600 hover:text-primary-500 text-sm font-medium"
                   >
                     <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
