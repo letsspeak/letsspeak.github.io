@@ -45,10 +45,18 @@
         <td class="loc"><code>public/vite.svg</code><br><code>src/index.html</code></td>
       </tr>
       <tr>
-        <td class="pri pri-mid">中</td>
-        <td>2. SEO / OGP</td>
-        <td>title と meta description は設定済み。OGP（og:title、og:description、og:image）と Twitter カードが未設定。応募先に URL を送ったときのプレビュー表示のために画像も用意する。</td>
-        <td class="loc"><code>src/index.html</code><br><code>public/</code></td>
+        <td class="pri pri-high">高</td>
+        <td>2. SEO / OGP（検索で lsklab.com を上位に）</td>
+        <td>
+          Google で名前やハンドルを検索すると GitHub が先に出て、このサイトが出てこない。やること:
+          (1) Google Search Console に lsklab.com を登録し、sitemap.xml を送信。
+          (2) <code>public/</code> に robots.txt と sitemap.xml を置く（SPA なのでトップ 1 URL と docs を列挙）。
+          (3) canonical と JSON-LD（Person: 氏名、ハンドル、sameAs に GitHub・ブログ）を <code>src/index.html</code> に追加。
+          (4) OGP（og:title、og:description、og:image）と Twitter カード。プレビュー用画像も用意。
+          (5) GitHub プロフィールの Website 欄と README、ブログのフッターから lsklab.com へリンクし、被リンクを増やす。
+          GitHub の方がドメイン評価が高いので、名前検索で 1 位にするには被リンクと継続的な更新が効く。
+        </td>
+        <td class="loc"><code>src/index.html</code><br><code>public/</code><br>GitHub プロフィール<br>~/git/blog</td>
       </tr>
       <tr>
         <td class="pri pri-mid">中</td>
