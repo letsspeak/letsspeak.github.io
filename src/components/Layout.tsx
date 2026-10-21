@@ -6,6 +6,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [activeSection, setActiveSection] = useState('home')
+  const [contactVisible, setContactVisible] = useState(false)
 
   const navigation = [
     { name: 'ホーム', href: '#home', id: 'home' },
@@ -20,7 +21,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            console.log(`Section detected: ${entry.target.id}`)
             setActiveSection(entry.target.id)
           }
         })
@@ -36,6 +36,18 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       if (element) observer.observe(element)
     })
 
+    return () => observer.disconnect()
+  }, [])
+
+  // お問い合わせセクションが画面内にある間はフローティングボタンを隠す
+  useEffect(() => {
+    const contact = document.getElementById('contact')
+    if (!contact) return
+    const observer = new IntersectionObserver(
+      ([entry]) => setContactVisible(entry.isIntersecting),
+      { threshold: 0 }
+    )
+    observer.observe(contact)
     return () => observer.disconnect()
   }, [])
 
@@ -118,6 +130,23 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <main className="pt-20 sm:pt-24">
         {children}
       </main>
+
+      {/* お問い合わせへのフローティングボタン */}
+      <button
+        type="button"
+        onClick={() => scrollToSection('contact')}
+        aria-label="お問い合わせセクションへ移動"
+        aria-hidden={contactVisible}
+        tabIndex={contactVisible ? -1 : 0}
+        className={`fixed bottom-5 right-5 sm:bottom-8 sm:right-8 z-40 inline-flex items-center gap-2 rounded-full bg-primary-600 px-4 py-3 sm:px-5 text-sm font-semibold text-white shadow-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-300 ${
+          contactVisible ? 'opacity-0 translate-y-4 pointer-events-none' : 'opacity-100 translate-y-0'
+        }`}
+      >
+        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+        <span>お問い合わせはこちら</span>
+      </button>
 
       <footer className="bg-white border-t">
         <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
