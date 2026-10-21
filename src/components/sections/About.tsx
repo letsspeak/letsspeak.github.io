@@ -1,5 +1,9 @@
 import React from 'react'
 
+// 実務経験の起点年（2009 年開始 = 2025 年時点で 16 年）
+const CAREER_START_YEAR = 2009
+const careerYears = new Date().getFullYear() - CAREER_START_YEAR
+
 const About: React.FC = () => {
   return (
     <section id="about" className="py-16 bg-white">
@@ -96,10 +100,6 @@ const About: React.FC = () => {
                       <dd className="text-sm text-gray-900">大宮将嗣（オオミヤ マサツグ）</dd>
                     </div>
                     <div>
-                      <dt className="text-sm font-medium text-gray-500">年齢</dt>
-                      <dd className="text-sm text-gray-900">39歳</dd>
-                    </div>
-                    <div>
                       <dt className="text-sm font-medium text-gray-500">専門分野</dt>
                       <dd className="text-sm text-gray-900">モバイルアプリ開発、Web開発、プロジェクト管理</dd>
                     </div>
@@ -109,7 +109,7 @@ const About: React.FC = () => {
                     </div>
                     <div>
                       <dt className="text-sm font-medium text-gray-500">実務経験</dt>
-                      <dd className="text-sm text-gray-900">16年</dd>
+                      <dd className="text-sm text-gray-900">{careerYears}年</dd>
                     </div>
                     <div>
                       <dt className="text-sm font-medium text-gray-500">プログラミング歴</dt>

@@ -91,7 +91,7 @@ npm run deploy
 - **本格運用**: 実データ更新時は Layout.tsx の警告バナーを削除
 - **MIME対応**: ビルド済みファイルを直接配置してMIMEタイプ問題を回避
 - **Vite の入口は `src/index.html`**: リポジトリ直下の `index.html` はデプロイ用 Action が置くビルド成果物なので編集しない（`vite.config.ts` の `root: 'src'` 参照）
-- **お問い合わせフォーム**: Google フォームを `src/components/sections/Contact.tsx` の `GOOGLE_FORM_URL` で埋め込み（メール転送・Lambda は未使用）
+- **お問い合わせフォーム**: Google フォームを `src/components/sections/Contact.tsx` の `GOOGLE_FORM_URL` で埋め込み（メール転送や Lambda などのサーバー側実装は撤去済み。contact@lsklab.com も廃止）
 
 ## Troubleshooting
 
