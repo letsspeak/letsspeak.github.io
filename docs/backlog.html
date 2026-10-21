@@ -6,34 +6,54 @@
   <meta name="robots" content="noindex">
   <title>Backlog - lsklab.com</title>
   <style>
-    :root { color-scheme: light dark; }
-    body { max-width: 52rem; margin: 2rem auto; padding: 0 1rem; font-family: system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif; line-height: 1.7; }
+    :root { color-scheme: light; }
+    body { background: #fff; color: #222; max-width: 52rem; margin: 2rem auto; padding: 0 1rem; font-family: system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif; line-height: 1.7; }
     h1 { font-size: 1.6rem; border-bottom: 2px solid #888; padding-bottom: .3rem; }
     h2 { font-size: 1.2rem; margin-top: 2rem; border-left: 4px solid #888; padding-left: .6rem; }
     h3 { font-size: 1rem; margin-top: 1.4rem; }
     code, pre { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
-    pre { background: rgba(128,128,128,.12); padding: .8rem; border-radius: 6px; overflow-x: auto; }
-    code { background: rgba(128,128,128,.12); padding: .1em .3em; border-radius: 3px; }
+    pre { background: #f3f4f6; padding: .8rem; border-radius: 6px; overflow-x: auto; }
+    code { background: #f3f4f6; padding: .1em .3em; border-radius: 3px; }
     pre code { background: none; padding: 0; }
     table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
-    th, td { border: 1px solid #999; padding: .4rem .6rem; text-align: left; vertical-align: top; }
-    th { background: rgba(128,128,128,.12); }
+    th, td { border: 1px solid #ccc; padding: .4rem .6rem; text-align: left; vertical-align: top; }
+    th { background: #f3f4f6; }
     .note { font-size: .9rem; opacity: .8; }
     s { opacity: .6; }
   </style>
 </head>
 <body>
   <h1>Backlog</h1>
-  <p class="note">後でやるタスクのメモ。完了したら該当項目を削除する。最終更新: 2026-10-21</p>
+  <p class="note">後でやるタスクのメモ。完了したら該当項目を削除する。最終更新: 2026-10-22</p>
 
   <h2>1. サイト本番化に向けた残作業</h2>
   <table>
     <thead><tr><th>項目</th><th>内容</th><th>場所</th></tr></thead>
     <tbody>
       <tr>
-        <td>プロトタイプ表示の除去</td>
-        <td>全ページ上部の黄色い「プロトタイプサイト」バナーと、タイトルの「【プロトタイプ】」を外す。</td>
-        <td><code>src/components/Layout.tsx</code>、<code>src/index.html</code></td>
+        <td>プロトタイプ帯の解除</td>
+        <td>全ページ上部の黄色い「プロトタイプサイト」バナーと、タイトルの「【プロトタイプ】」を外す。あわせてサンプルデータや仮の文言など、プロトタイプ前提になっている箇所を洗い出して修正する。</td>
+        <td><code>src/components/Layout.tsx</code>、<code>src/index.html</code>、<code>src/data/projects.ts</code> ほか</td>
+      </tr>
+      <tr>
+        <td>掲載情報を 2026 年 10 月時点に更新</td>
+        <td>スキル一覧、経歴、プロジェクト実績などの内容を 2026 年 10 月時点の実態に合わせて書き直す。</td>
+        <td><code>src/components/sections/Skills.tsx</code>、<code>About.tsx</code>、<code>src/data/projects.ts</code></td>
+      </tr>
+      <tr>
+        <td>サイトアイコンの更新</td>
+        <td>favicon が Vite のデフォルト（<code>vite.svg</code>）のまま。lskLab 用のアイコンに差し替える。</td>
+        <td><code>public/vite.svg</code>、<code>src/index.html</code></td>
+      </tr>
+      <tr>
+        <td>「詳細を見る」で URL が変わらない問題</td>
+        <td>SPA でプロジェクトの「詳細を見る」を押しても URL が変わらないため、ブラウザの「戻る」を押すと想定外の挙動になる。React Router のルート（例: <code>/projects/:id</code>）または履歴操作で、戻るが期待どおり動くようにする。</td>
+        <td><code>src/App.tsx</code>、<code>src/components/sections/Projects.tsx</code></td>
+      </tr>
+      <tr>
+        <td>お問い合わせへのフローティングボタン</td>
+        <td>お問い合わせが目立たないので、ページ上部などお問い合わせセクションが見えていないときに、右下へ「お問い合わせはこちら」ボタンをフロート表示し、押すとお問い合わせまで一気にスクロールするようにする。お問い合わせが見えている間は隠す。</td>
+        <td><code>src/components/Layout.tsx</code></td>
       </tr>
       <tr>
         <td>年齢表示の扱い</td>
