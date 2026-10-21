@@ -30,7 +30,7 @@
 </head>
 <body>
   <h1>Backlog</h1>
-  <p class="note">後でやるタスクのメモ。完了したら該当項目を削除する。最終更新: 2026-10-22</p>
+  <p class="note">後でやるタスクのメモ。完了したら該当項目を削除する。最終更新: 2026-10-22（掲載情報更新・プロトタイプ帯解除まで完了）</p>
 
   <h2>1. サイト本番化に向けた残作業</h2>
   <p class="note">優先度順。上から順に着手する。</p>
@@ -39,39 +39,39 @@
     <thead><tr><th>優先度</th><th>項目</th><th>内容</th><th>場所</th></tr></thead>
     <tbody>
       <tr>
-        <td class="pri pri-high">高</td>
-        <td>1. 掲載情報を 2026 年 10 月時点に更新</td>
-        <td>スキル一覧、経歴、プロジェクト実績などの内容を 2026 年 10 月時点の実態に合わせて書き直す。</td>
-        <td class="loc"><code>src/components/sections/Skills.tsx</code><br><code>src/components/sections/About.tsx</code><br><code>src/data/projects.ts</code></td>
-      </tr>
-      <tr>
-        <td class="pri pri-high">高</td>
-        <td>2. プロトタイプ帯の解除</td>
-        <td>全ページ上部の黄色い「プロトタイプサイト」バナーと、タイトルの「【プロトタイプ】」を外す。あわせてサンプルデータや仮の文言など、プロトタイプ前提になっている箇所を洗い出して修正する。</td>
-        <td class="loc"><code>src/components/Layout.tsx</code><br><code>src/index.html</code><br><code>src/data/projects.ts</code> ほか</td>
-      </tr>
-      <tr>
         <td class="pri pri-mid">中</td>
-        <td>3. プロジェクト詳細ページ</td>
+        <td>1. プロジェクト詳細ページ</td>
         <td>要件定義では一覧＋詳細の構成だが、現在は単一ページのスクロール構成で詳細ページはない。必要かを再検討する。詳細表示は <code>#projects/&lt;id&gt;</code> の URL で履歴に積む実装済みなので、それを拡張する形で検討する。</td>
         <td class="loc"><code>src/components/sections/Projects.tsx</code></td>
       </tr>
       <tr>
         <td class="pri pri-mid">中</td>
-        <td>4. SEO / OGP</td>
-        <td>要件定義にある title・meta description・OGP が未設定。プロトタイプ帯の解除と同時にやる。</td>
-        <td class="loc"><code>src/index.html</code></td>
-      </tr>
-      <tr>
-        <td class="pri pri-mid">中</td>
-        <td>5. サイトアイコンの更新</td>
+        <td>2. サイトアイコンの更新</td>
         <td>favicon が Vite のデフォルト（vite.svg）のまま。lskLab 用のアイコンに差し替える。</td>
         <td class="loc"><code>public/vite.svg</code><br><code>src/index.html</code></td>
       </tr>
       <tr>
+        <td class="pri pri-mid">中</td>
+        <td>3. SEO / OGP</td>
+        <td>title と meta description は設定済み。OGP（og:title、og:description、og:image）と Twitter カードが未設定。応募先に URL を送ったときのプレビュー表示のために画像も用意する。</td>
+        <td class="loc"><code>src/index.html</code><br><code>public/</code></td>
+      </tr>
+      <tr>
+        <td class="pri pri-mid">中</td>
+        <td>4. スマホ幅のナビゲーション</td>
+        <td>640px 未満ではナビのセクションリンクが非表示になり、ロゴと GitHub アイコンだけになる。ハンバーガーメニューか横スクロールのタブを追加する。応募先の担当者はスマホで開くことが多い。</td>
+        <td class="loc"><code>src/components/Layout.tsx</code></td>
+      </tr>
+      <tr>
+        <td class="pri pri-mid">中</td>
+        <td>5. 自習プロダクト公開後の更新</td>
+        <td>LLM API／RAG／エージェントの自習プロダクト（2026年11月公開予定）が公開できたら、プロジェクト一覧の先頭に追加し、リポジトリ・デモ・設計メモへのリンクを付ける。「対応可能な案件」の「自習中」の注記も外す。</td>
+        <td class="loc"><code>src/data/projects.ts</code><br><code>src/data/profile.ts</code><br><code>src/components/sections/Contact.tsx</code></td>
+      </tr>
+      <tr>
         <td class="pri pri-low">低</td>
         <td>6. 年齢表示の扱い</td>
-        <td>固定値だった年齢行は 2026-10-21 に削除済み。表示を戻すなら生年を定数にして自動計算にする（実務経験は <code>CAREER_START_YEAR</code> から自動計算済み）。</td>
+        <td>年齢は <code>src/data/profile.ts</code> の基準年から年ベースで自動計算している。誕生日が年の後半のため、誕生日から年末までは 1 歳若く表示される。月まで考慮するなら誕生月を定数に追加する（生年月日は公開しない）。</td>
         <td class="loc"><code>src/components/sections/About.tsx</code></td>
       </tr>
       <tr>

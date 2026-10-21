@@ -1,138 +1,322 @@
+// 職務経歴書（2026-10-18版）と一致させている。所属・取引先の社名は公開しない（業種と契約形態のみ）。
 export interface Project {
   id: string
   title: string
-  description: string
-  longDescription: string
-  technologies: string[]
+  description: string        // 一覧カード用の一行説明
   period: string
+  months: number
   role: string
-  status: 'completed' | 'in-progress' | 'planned'
-  githubUrl?: string
-  demoUrl?: string
-  imageUrl?: string
-  challenges: string[]
-  achievements: string[]
+  employment: '正社員' | '契約社員' | 'アルバイト' | 'フリーランス'
+  industry: string
+  teamSize?: number
+  technologies: string[]
+  responsibilities: string[] // 職務経歴書の「内容」
+  status: 'completed' | 'in-progress'
+  highlight?: boolean        // 一覧の先頭で強調する
 }
 
 export const projects: Project[] = [
   {
-    id: 'task-management-service',
-    title: 'タスク・人材管理サービス開発',
-    description: 'TypeScript + React + AWSを活用したタスク・人材管理Webサービスの開発支援',
-    longDescription: 'プロジェクト運用支援および要件定義を担当し、海外メンバーとの協業により効率的な開発体制を構築しました。AWSクラウドサービスを活用したスケーラブルなシステム設計を実現しています。',
-    technologies: ['TypeScript', 'React', 'AWS', 'Node.js'],
-    period: '2024年6月 - 2025年1月',
-    role: 'PMO',
-    status: 'completed',
-    challenges: [
-      '海外メンバーとの効果的なコミュニケーション体制の構築',
-      'スケーラブルなクラウドアーキテクチャの設計',
-      '要件定義からリリースまでの一貫したプロジェクト管理'
+    id: 'financial-ma-analytics',
+    title: '金融機関向け マーケティング施策分析基盤の開発・AI 業務支援',
+    description: 'Looker／LookML による分析基盤の設計・実装、Python 自動化、生成AI 業務支援ツールの構築、UI/UX 改善提案',
+    period: '2025年8月 - 現在',
+    months: 15,
+    role: 'SE',
+    employment: 'フリーランス',
+    industry: '金融',
+    technologies: ['Looker', 'LookML', 'BigQuery', 'SQL', 'Python', 'HTML', 'Claude Code', '生成AI'],
+    responsibilities: [
+      'マーケティング施策に関する分析基盤の設計・実装（Looker／LookML／BigQuery）',
+      '分析基盤の機能拡張と、外部ツール連携部分の技術設計・コードレビュー',
+      '配信対象者抽出や条件判定を行うバッチ処理の設計・実装',
+      'Python による業務自動化ツールの設計・実装・テスト',
+      '生成AI を用いた社内業務支援ツールの構築（ドキュメント生成、コード生成支援、ナレッジ検索）',
+      '既存業務システムの UI/UX 改善提案（HTML プロトタイプ・資料の作成）',
+      'Claude Code を設計・実装・テスト・レビューに組み込んだ AI 活用開発プロセスの整備',
     ],
-    achievements: [
-      '多国籍チームでの円滑なプロジェクト運営を実現',
-      'AWS活用による高可用性システムの構築',
-      '予定通りのリリーススケジュール達成'
-    ]
+    status: 'in-progress',
+    highlight: true,
   },
   {
     id: 'foreign-worker-app',
-    title: '外国人労働者 勤怠管理アプリ',
-    description: 'Swift + Kotlin + NFC技術を活用したマルチプラットフォーム勤怠管理システム',
-    longDescription: 'iOS/Androidアプリおよびバックエンドシステムの開発において、仕様策定からNFC読み取りロジック実装まで技術的リーダーシップを発揮。多国籍チームのタスク管理と技術支援を担当しました。',
-    technologies: ['Swift', 'Kotlin', 'Laravel', 'Vue3', 'NFC', 'PHP'],
-    period: '2025年2月 - 2025年6月',
+    title: '外国人労働者の登録・勤怠管理アプリ開発',
+    description: 'PM として受託開発案件の立ち上げから参画。AI 利用を前提とした開発環境をゼロから構築し、NFC 読み取りロジックを実装',
+    period: '2025年2月 - 2025年7月',
+    months: 6,
     role: 'PM',
-    status: 'completed',
-    challenges: [
-      'NFC技術を活用した勤怠記録システムの実装',
-      '多言語対応とユーザビリティの両立',
-      '多国籍チームでの効率的なタスク管理'
+    employment: 'フリーランス',
+    industry: '人材（派遣）',
+    teamSize: 5,
+    technologies: ['iOS', 'Android', 'Swift', 'Kotlin', 'Capacitor', 'NFC', 'Laravel', 'Vue', 'PHP', 'TypeScript', 'MySQL', 'Linux'],
+    responsibilities: [
+      '受託開発案件のスタートから参画し、PM として提案書の作成など営業支援を担当',
+      'AI 利用を想定した開発環境をゼロベースから構築',
+      'バックエンド、フロントエンド、ネイティブアプリのベースを作成',
+      'NFC 読み取りについて仕様をもとにロジックを作成',
+      '外国人を含むプロジェクトメンバーのタスク管理、技術支援',
     ],
-    achievements: [
-      'NFC読み取り精度99%以上を実現',
-      'iOS/Android両プラットフォームでの同時リリース',
-      '多国籍チームでの円滑なプロジェクト推進'
-    ]
+    status: 'completed',
+  },
+  {
+    id: 'task-hr-service',
+    title: 'タスク・人材管理サービス開発',
+    description: '自社開発案件に初期から参画し、PMO として海外メンバーの多い体制で要件定義・設計を支援',
+    period: '2024年6月 - 2025年1月',
+    months: 8,
+    role: 'PMO',
+    employment: 'フリーランス',
+    industry: 'Web サービス（自社開発）',
+    teamSize: 12,
+    technologies: ['Laravel', 'Vue', 'PHP', 'TypeScript', 'PostgreSQL', 'Linux'],
+    responsibilities: [
+      '自社開発案件に初期から参画し、PMO としてプロジェクト運用を支援',
+      '海外メンバーが多い状況での要件定義、設計業務の支援',
+      '開発メンバーの技術支援',
+    ],
+    status: 'completed',
   },
   {
     id: 'insurance-registration-site',
-    title: '保険加入者登録 Webサイト開発',
-    description: 'Java + Springフレームワークを使用したセキュアな保険加入者登録システム',
-    longDescription: 'プロジェクト運用およびセキュリティ診断支援を担当し、Java研修講師としてチームの技術力向上にも貢献しました。高度なセキュリティ要件を満たすWebシステムの構築を実現しています。',
-    technologies: ['Java', 'Spring', 'MySQL', 'Tomcat'],
+    title: '新規保険加入者登録用 Web サイト開発',
+    description: '受託開発案件に途中参画し、PMO としてプロジェクト運用とセキュリティ診断を支援。Java 研修講師も担当',
     period: '2024年2月 - 2024年5月',
+    months: 4,
     role: 'PMO',
-    status: 'completed',
-    challenges: [
-      '高度なセキュリティ要件への対応',
-      'プロジェクトメンバーのJavaスキル向上支援',
-      '品質とスケジュールの両立'
+    employment: 'フリーランス',
+    industry: '保険',
+    teamSize: 20,
+    technologies: ['Laravel', 'PHP', 'JavaScript', 'PostgreSQL', 'Linux'],
+    responsibilities: [
+      '保険会社からの受託開発案件に途中参画し、PMO としてプロジェクト運用を支援',
+      'セキュリティ診断に関する技術的支援',
+      '開発メンバーの技術支援',
+      'Java 研修講師',
     ],
-    achievements: [
-      'セキュリティ診断での脆弱性ゼロを達成',
-      'Java研修によるチーム全体のスキル向上',
-      '予定通りのシステムリリース完了'
-    ]
+    status: 'completed',
   },
   {
-    id: 'fan-site-ios-app',
-    title: '新規ファンサイト iOSアプリ開発',
-    description: 'Swift を使用したファンサイト向けiOSアプリの新規開発',
-    longDescription: '新人アーティスト向けファンサイトアプリをゼロベースで開発。チャットUIなどの独自機能を実装し、ファンとアーティストをつなぐプラットフォームを構築しました。',
-    technologies: ['Swift', 'iOS', 'UIKit', 'Core Data'],
-    period: '2021年12月 - 2022年2月',
-    role: 'SE',
-    status: 'completed',
-    challenges: [
-      'リアルタイムチャット機能の実装',
-      'ユーザーエンゲージメント向上のUI設計',
-      '短期間でのゼロベース開発'
+    id: 'fansite-ios-app',
+    title: '新規ファンサイト iOS アプリ開発',
+    description: '新規デビュー予定アーティストのファンサイトアプリ。チャット UI などゼロベースで構築された UI の iOS 実装',
+    period: '2022年1月 - 2022年3月',
+    months: 3,
+    role: 'PMO',
+    employment: 'フリーランス',
+    industry: 'エンターテインメント',
+    teamSize: 6,
+    technologies: ['iOS', 'Swift'],
+    responsibilities: [
+      '新規デビュー予定アーティストのファンサイトアプリの開発',
+      'チャット UI など、ゼロベースで構築された UI の iOS 向け実装',
     ],
-    achievements: [
-      'チャットUIなどの独自機能をゼロベース実装',
-      'App Storeでの無事リリース完了',
-      '高いユーザー評価を獲得'
-    ]
+    status: 'completed',
   },
   {
-    id: 'tablet-pos-app',
-    title: '店頭タブレットアプリ開発',
-    description: 'iOS タブレット向けPOSアプリの刷新およびマルチタスク対応',
-    longDescription: '店頭で使用するiOSタブレットアプリの全面刷新を担当。マルチタスク対応のUI改修により、店舗スタッフの業務効率化を実現しました。',
-    technologies: ['Swift', 'iOS', 'UIKit', 'Core Data'],
-    period: '2020年4月 - 2021年5月',
+    id: 'store-tablet-app',
+    title: '店頭利用タブレットアプリケーションの開発',
+    description: '店頭で利用される iOS タブレットアプリの開発と、マルチタスク対応にともなう UI 刷新',
+    period: '2020年4月 - 2021年6月',
+    months: 15,
     role: 'SE',
-    status: 'completed',
-    challenges: [
-      'レガシーアプリの全面刷新',
-      'マルチタスク環境での安定動作の実現',
-      '店舗運用に影響しないリリーススケジュール'
+    employment: 'フリーランス',
+    industry: '金融・コンサルティング',
+    teamSize: 6,
+    technologies: ['iOS', 'Swift', 'Oracle'],
+    responsibilities: [
+      '店頭で利用されている iOS タブレットアプリケーションの開発',
+      'マルチタスク対応にともなう UI 刷新',
     ],
-    achievements: [
-      'マルチタスク対応により業務効率20%向上',
-      '安定性向上によりクラッシュ率90%削減',
-      'スムーズな店舗展開を支援'
-    ]
+    status: 'completed',
   },
   {
     id: 'maas-system',
     title: 'MaaS システムの開発',
-    description: 'Swift を使用したMobility as a Service システムのiOSアプリ開発',
-    longDescription: 'マスターデータ投入ツールの開発から、エンドユーザー向けiOSアプリの開発・リリースまでを担当。次世代モビリティサービスの基盤構築に貢献しました。',
-    technologies: ['Swift', 'iOS', 'REST API', 'Core Location'],
+    description: 'マスターデータ投入ツールの開発と、エンドユーザー向け iOS アプリの開発・リリース',
     period: '2019年7月 - 2020年1月',
+    months: 7,
     role: 'SE',
-    status: 'completed',
-    challenges: [
-      '位置情報を活用したリアルタイム機能の実装',
-      'マスターデータ管理ツールの効率化',
-      '複雑な料金計算ロジックの実装'
+    employment: 'フリーランス',
+    industry: 'モビリティ',
+    teamSize: 8,
+    technologies: ['iOS', 'Swift', 'Realm', 'Java', 'Electron'],
+    responsibilities: [
+      'MaaS システムのマスターデータ投入ツールの開発',
+      'エンドユーザー向け iOS 版アプリの開発、リリース',
     ],
-    achievements: [
-      'App Storeでの正式リリース完了',
-      'マスターデータ投入の自動化により作業時間80%削減',
-      'ユーザーフレンドリーなUI/UXを実現'
-    ]
-  }
+    status: 'completed',
+  },
+  {
+    id: 'tech-selection',
+    title: '新規プロジェクト立ち上げに向けた技術調査・選定',
+    description: 'OS／言語／フレームワーク／ミドルウェア／クラウド／データ基盤／CI・CD を横断的に調査・選定しドキュメント化',
+    period: '2019年6月',
+    months: 1,
+    role: 'SE',
+    employment: 'フリーランス',
+    industry: 'IT（SIer）',
+    teamSize: 8,
+    technologies: [],
+    responsibilities: [
+      '新規プロジェクトの立ち上げに向けて、利用技術（OS／言語／フレームワーク／ミドルウェア／クラウド環境／データ基盤／CI・CD 環境）のメリット・デメリットを調査・選定',
+      '選定結果のドキュメント作成',
+    ],
+    status: 'completed',
+  },
+  {
+    id: 'internal-system-maintenance',
+    title: '社内向けシステムの保守開発',
+    description: '既存の社内向けシステムの保守・移行調査と、新規社内向けシステムの開発',
+    period: '2019年3月 - 2019年5月',
+    months: 3,
+    role: 'SE',
+    employment: 'フリーランス',
+    industry: 'IT（SIer）',
+    teamSize: 3,
+    technologies: ['Java', 'PHP', 'CodeIgniter', 'MySQL', 'Linux'],
+    responsibilities: [
+      '既存の社内向けシステム（Java）の保守および移行にともなう仕様調査',
+      '新規社内向けシステムの開発（PHP）',
+      '社内向け CMS の保守・更新対応',
+    ],
+    status: 'completed',
+  },
+  {
+    id: 'social-game-ops',
+    title: 'ソーシャルゲームの運用',
+    description: '25 名体制でのソーシャルゲーム運用',
+    period: '2018年9月 - 2019年1月',
+    months: 5,
+    role: 'SE',
+    employment: '正社員',
+    industry: 'ゲーム',
+    teamSize: 25,
+    technologies: ['Perl', 'MySQL', 'Linux'],
+    responsibilities: ['ソーシャルゲームの運用'],
+    status: 'completed',
+  },
+  {
+    id: 'logistics-system',
+    title: '流通関連システム開発',
+    description: 'ドライバーアプリと基盤サービスの開発・運用保守、DB 設計',
+    period: '2017年10月 - 2018年8月',
+    months: 11,
+    role: 'SE',
+    employment: 'フリーランス',
+    industry: '流通・物流',
+    teamSize: 10,
+    technologies: ['iOS', 'Android', 'Java', 'PostgreSQL', 'Linux'],
+    responsibilities: [
+      'ドライバーアプリの開発、運用保守',
+      '基盤サービスの開発、運用保守',
+      'DB 設計',
+    ],
+    status: 'completed',
+  },
+  {
+    id: 'reservation-system',
+    title: '予約システムの開発',
+    description: '行政向けサービスの運用保守、クルーズ予約システムと PDF 自動翻訳システムの開発',
+    period: '2017年1月 - 2017年9月',
+    months: 9,
+    role: 'SE',
+    employment: '正社員',
+    industry: '行政・観光',
+    teamSize: 2,
+    technologies: ['Java', 'Spring', 'GCP', 'AWS Lambda', 'Linux'],
+    responsibilities: [
+      '行政向けサービスの運用保守',
+      'クルーズ予約システムの開発',
+      'PDF の自動翻訳システムの開発',
+    ],
+    status: 'completed',
+  },
+  {
+    id: 'job-hunting-site',
+    title: '就活支援サイト開発',
+    description: '就活支援 Web サイトの開発と DB 設計',
+    period: '2016年6月 - 2016年12月',
+    months: 7,
+    role: 'SE',
+    employment: '正社員',
+    industry: '人材',
+    teamSize: 8,
+    technologies: ['Java', 'Spring', 'Oracle', 'Linux'],
+    responsibilities: ['就活支援サイトの開発', 'DB 設計'],
+    status: 'completed',
+  },
+  {
+    id: 'exhibition-robot',
+    title: '展示用ロボットコントロール',
+    description: 'ショッピングモール展示用ロボットのスケジュール制御アプリケーション開発',
+    period: '2015年10月 - 2016年5月',
+    months: 8,
+    role: 'PL',
+    employment: '正社員',
+    industry: 'ロボティクス',
+    teamSize: 3,
+    technologies: ['C#', 'Windows', 'LocalDB'],
+    responsibilities: ['ショッピングモール展示用ロボットのコントロール', 'スケジュール制御アプリケーションの開発'],
+    status: 'completed',
+  },
+  {
+    id: 'app-test-automation',
+    title: 'スマホアプリのテスト自動化',
+    description: 'iOS／Android アプリのテスト自動化基盤の構築と、簡易 DSL の言語内処理',
+    period: '2014年7月 - 2015年9月',
+    months: 15,
+    role: 'SE',
+    employment: 'アルバイト',
+    industry: 'ゲーム・動画配信',
+    teamSize: 5,
+    technologies: ['iOS', 'Android', 'Java', 'Appium'],
+    responsibilities: ['テスト自動化業務のプログラミング', '簡単な DSL の言語内処理'],
+    status: 'completed',
+  },
+  {
+    id: 'smartphone-game-codev',
+    title: 'スマホ向けゲームの共同開発',
+    description: 'クライアントチームリーダーとしてスマホゲームの共同開発を推進',
+    period: '2013年2月 - 2014年6月',
+    months: 17,
+    role: 'TL',
+    employment: '正社員',
+    industry: 'ゲーム',
+    teamSize: 10,
+    technologies: ['iOS', 'Objective-C', 'cocos2d', 'Jenkins'],
+    responsibilities: ['クライアント側プログラミング', 'クライアントチームリーダー', 'サーバー側開発ツールの調整'],
+    status: 'completed',
+  },
+  {
+    id: 'ios-social-game',
+    title: 'iOS 向けソーシャルゲーム開発',
+    description: '企画からクライアント側プログラミング、スケジュール調整まで担当',
+    period: '2012年1月 - 2013年1月',
+    months: 13,
+    role: 'SL',
+    employment: '正社員',
+    industry: 'ゲーム',
+    teamSize: 8,
+    technologies: ['iOS', 'Objective-C', 'Jenkins'],
+    responsibilities: ['企画、プログラミング', 'クライアント、スケジュールの調整'],
+    status: 'completed',
+  },
+  {
+    id: 'game-debug',
+    title: 'ゲームのデバッグ業務',
+    description: '最大 50 名のデバッグチームを PL として管理。スケジュール管理とクライアントマネジメント',
+    period: '2009年8月 - 2011年12月',
+    months: 29,
+    role: 'PL',
+    employment: '契約社員',
+    industry: 'ゲーム',
+    teamSize: 50,
+    technologies: [],
+    responsibilities: [
+      'デバッグ作業、成果物の精査、チェック項目の選定',
+      'リーダー業務、スケジュール管理、クライアントマネジメント',
+      '最大 50 名のチーム管理',
+    ],
+    status: 'completed',
+  },
 ]

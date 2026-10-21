@@ -24,7 +24,7 @@ This is a GitHub Pages personal website/portfolio repository (`letsspeak.github.
 ```
 src/
 ├── components/         # 共通コンポーネント
-│   └── Layout.tsx     # メインレイアウト（ナビゲーション、フッター、プロトタイプ警告バナー）
+│   └── Layout.tsx     # メインレイアウト（ナビゲーション、フッター、お問い合わせへのフローティングボタン）
 ├── pages/             # ページコンポーネント
 │   ├── Home.tsx       # ホームページ（最近の活動ハイライト）
 │   ├── About.tsx      # プロフィール・自己紹介
@@ -82,16 +82,15 @@ npm run deploy
 
 - **プロジェクト情報**: `src/data/projects.ts` で管理
 - **個人情報**: 各ページコンポーネント内で直接編集
-- **スキル情報**: `src/pages/Skills.tsx` 内のデータ配列
-- **プロトタイプ警告**: `src/components/Layout.tsx` のバナー（本格運用時に削除）
+- **スキル情報**: `src/components/sections/Skills.tsx` 内のデータ配列
+- **基本情報・個人開発**: `src/data/profile.ts`
 
 ## Important Notes
 
 - **ドキュメントは HTML**: `docs/` 配下の文書は HTML で書く（README.md と CLAUDE.md のみ Markdown）。残タスクは `docs/backlog.html` に集約
 
-- **プロトタイプ状態**: 現在はサンプルデータを含むプロトタイプ
-- **警告表示**: 全ページ上部に黄色の警告バナーを表示中
-- **本格運用**: 実データ更新時は Layout.tsx の警告バナーを削除
+- **掲載内容は職務経歴書と一致させる**: 数字・技術・年数は `src/data/profile.ts` と `src/data/projects.ts` が正。根拠のない数字（「20+」など）は載せない
+- **社名は載せない**: 所属・取引先は業種と契約形態のみ。リポジトリは公開されている
 - **MIME対応**: ビルド済みファイルを直接配置してMIMEタイプ問題を回避
 - **Vite の入口は `src/index.html`**: リポジトリ直下の `index.html` はデプロイ用 Action が置くビルド成果物なので編集しない（`vite.config.ts` の `root: 'src'` 参照）
 - **お問い合わせフォーム**: Google フォームを `src/components/sections/Contact.tsx` の `GOOGLE_FORM_URL` で埋め込み（メール転送や Lambda などのサーバー側実装は撤去済み。contact@lsklab.com も廃止）

@@ -22,8 +22,8 @@ const Contact: React.FC = () => {
                     どのような内容でもお気軽にご連絡ください。
                   </p>
                   <p className="text-gray-700 leading-relaxed">
-                    モバイルアプリ開発、Web開発、プロジェクト管理に関するプロジェクトについて、
-                    技術的な実現可能性や最適なアプローチについてご相談いただけます。
+                    AI 機能を備えたプロダクト開発、Web・モバイルアプリ開発、データ分析基盤、プロジェクト管理について、
+                    技術的な実現可能性や最適なアプローチをご相談いただけます。
                   </p>
                 </div>
 
@@ -74,11 +74,11 @@ const Contact: React.FC = () => {
                 <div className="mt-8 p-4 bg-blue-50 rounded-lg">
                   <h3 className="text-lg font-semibold text-blue-900 mb-2">対応可能な案件</h3>
                   <ul className="text-blue-800 space-y-1 text-sm">
-                    <li>• モバイルアプリ開発（iOS/Android）</li>
-                    <li>• Webアプリケーション開発（React, TypeScript, Java等）</li>
-                    <li>• プロジェクト管理・PMO</li>
-                    <li>• 技術コンサルティング・研修講師</li>
-                    <li>• システム設計・アーキテクチャ</li>
+                    <li>• AI 機能を備えたプロダクトの開発（LLM API／RAG／エージェントは自習中、2026年11月に成果物提示予定）</li>
+                    <li>• Web アプリケーション開発（Vue／React, TypeScript, Laravel）</li>
+                    <li>• モバイルアプリ開発（iOS／Android）</li>
+                    <li>• データ分析基盤の構築（Looker／LookML／BigQuery）</li>
+                    <li>• プロジェクト管理・PMO、技術支援・研修講師</li>
                   </ul>
                 </div>
               </div>
