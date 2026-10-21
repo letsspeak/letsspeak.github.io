@@ -46,9 +46,9 @@
       </tr>
       <tr>
         <td class="pri pri-high">高</td>
-        <td>2. プロジェクト詳細ページ</td>
-        <td>要件定義では一覧＋詳細の構成だが、現在は単一ページのスクロール構成で詳細ページはない。必要かを再検討する。「詳細を見る」の URL 問題と合わせて設計する。</td>
-        <td class="loc"><code>src/components/sections/Projects.tsx</code></td>
+        <td>2. 「詳細を見る」で URL が変わらない問題</td>
+        <td>SPA でプロジェクトの「詳細を見る」を押しても URL が変わらないため、ブラウザの「戻る」を押すと想定外の挙動になる。React Router のルート（例: <code>/projects/:id</code>）または履歴操作で、戻るが期待どおり動くようにする。</td>
+        <td class="loc"><code>src/App.tsx</code><br><code>src/components/sections/Projects.tsx</code></td>
       </tr>
       <tr>
         <td class="pri pri-high">高</td>
@@ -64,9 +64,9 @@
       </tr>
       <tr>
         <td class="pri pri-mid">中</td>
-        <td>5. 「詳細を見る」で URL が変わらない問題</td>
-        <td>SPA でプロジェクトの「詳細を見る」を押しても URL が変わらないため、ブラウザの「戻る」を押すと想定外の挙動になる。React Router のルート（例: <code>/projects/:id</code>）または履歴操作で、戻るが期待どおり動くようにする。</td>
-        <td class="loc"><code>src/App.tsx</code><br><code>src/components/sections/Projects.tsx</code></td>
+        <td>5. プロジェクト詳細ページ</td>
+        <td>要件定義では一覧＋詳細の構成だが、現在は単一ページのスクロール構成で詳細ページはない。必要かを再検討する。「詳細を見る」の URL 問題と合わせて設計する。</td>
+        <td class="loc"><code>src/components/sections/Projects.tsx</code></td>
       </tr>
       <tr>
         <td class="pri pri-mid">中</td>
