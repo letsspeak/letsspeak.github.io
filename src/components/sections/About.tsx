@@ -60,18 +60,16 @@ const About: React.FC = () => {
                   />
                   <h2 className="text-xl font-semibold text-gray-900 mb-4">自己紹介</h2>
                   <div className="text-gray-700 leading-relaxed space-y-4">
-                    <p>
-                      フリーランスエンジニアの{profile.name}です。ゲーム・スマホアプリ・行政サービス・流通・保険・金融の各領域で{years}年、
-                      iOS／Android／Web／バックエンド／DB／インフラを横断して設計・実装からリリース、PM／PMO まで担当してきました。
+                    <p className="text-lg font-semibold text-gray-900">
+                      基盤技術を押さえたうえで課題を論理的に分析し、多角的な視点から解決策を導くことを得意とする、フルスタックエンジニアの{profile.name}です。
                     </p>
                     <p>
-                      2025年8月からは金融機関向けのマーケティング施策分析案件で、Looker／LookML による分析基盤の設計・実装、
-                      Python による業務自動化ツールの開発、生成AI を用いた業務支援ツールの構築、既存業務システムの UI/UX 改善提案を担当しています。
+                      ゲーム・スマホアプリ・行政サービス・流通・保険・金融の各領域で{years}年、iOS／Android／Web／バックエンド／DB／インフラを横断して、
+                      設計・実装からリリース、PM／PMO まで担当してきました。
                     </p>
                     <p>
-                      Claude Code を日常的に設計・実装・テスト・レビューに組み込んでおり、次は AI 機能を備えたユーザー向けプロダクトを作る側に移りたいと考えています。
-                      React／Next.js は個人開発（SSR、CircleCI → AWS ECS 自動デプロイ、AWS CDK + Lambda）、業務では Vue／TypeScript、Laravel、iOS（Swift）が中心です。
-                      LLM API／RAG／エージェントは現在自習プロダクト（Next.js + TypeScript）で実装中で、2026年11月に成果物を提示できる予定です。
+                      現在は金融機関向けの分析基盤と生成AI を用いた業務支援ツールを手がけ、Claude Code を設計・実装・テスト・レビューに日常的に組み込んでいます。
+                      次は AI 機能を備えたユーザー向けプロダクトを作る側に移りたいと考えており、LLM API／RAG／エージェントは自習プロダクト（Next.js + TypeScript）で実装中です（2026年11月に公開予定）。
                     </p>
                   </div>
                 </div>
