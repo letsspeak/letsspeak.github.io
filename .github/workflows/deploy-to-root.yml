@@ -33,6 +33,8 @@ jobs:
         git config --local user.name "GitHub Action"
 
         # ビルド成果物をリポジトリ直下に配置（ソースはそのまま残す）
+        # 古いハッシュ付きアセットが溜まらないよう assets/ は入れ替える
+        rm -rf assets
         cp -r dist/* .
         cp dist/.nojekyll .
         rm -rf dist node_modules
