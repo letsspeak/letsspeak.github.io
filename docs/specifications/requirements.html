@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>ポートフォリオサイト 要件定義 - lsklab.com</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body { max-width: 52rem; margin: 2rem auto; padding: 0 1rem; font-family: system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif; line-height: 1.7; }
+    h1 { font-size: 1.6rem; border-bottom: 2px solid #888; padding-bottom: .3rem; }
+    h2 { font-size: 1.2rem; margin-top: 2rem; border-left: 4px solid #888; padding-left: .6rem; }
+    code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; background: rgba(128,128,128,.12); padding: .1em .3em; border-radius: 3px; }
+    blockquote { margin: 1rem 0; padding: .4rem 1rem; border-left: 4px solid #bbb; opacity: .85; }
+    .note { font-size: .9rem; opacity: .8; }
+  </style>
+</head>
+<body>
+  <h1>Let’s Speak ポートフォリオサイト 要件定義</h1>
+
+  <h2>1. サイトの目的・ゴール</h2>
+  <p>本サイトは、開発者 大宮将嗣 の技術的実績・スキル・職務経歴をオンライン上で公開することを目的とし、以下のターゲットに向けたポートフォリオサイトを提供する。</p>
+  <ul>
+    <li>フリーランス活動の雇い主（案件獲得を想定）</li>
+    <li>案件の依頼を行う顧客（信頼獲得と問い合わせ誘導）</li>
+    <li>同業のIT技術者（技術力・プレゼンスの向上）</li>
+  </ul>
+  <p>併せて、AI・技術研究・趣味開発の公開・アーカイブ的役割も持つ。</p>
+
+  <h2>2. 機能要件</h2>
+  <ul>
+    <li>トップページ（導線のハブ、最近の活動ハイライト）</li>
+    <li>自己紹介セクション（氏名、経歴概要、PR）</li>
+    <li>スキル一覧（使用可能技術スタック、経験年数）</li>
+    <li>プロジェクト紹介
+      <ul>
+        <li>一覧ページ</li>
+        <li>詳細ページ（各プロジェクトの技術、期間、役割など）</li>
+      </ul>
+    </li>
+    <li>お問い合わせ（Google フォームの埋め込み。メールアドレス運用は廃止）</li>
+    <li>言語切り替え（日本語/英語）</li>
+  </ul>
+  <blockquote>※ 今後、必要に応じて機能追加あり（拡張性を考慮する）</blockquote>
+
+  <h2>3. デザイン要件（UI/UX）</h2>
+  <ul>
+    <li>見やすくシンプルな構成</li>
+    <li>モダンかつ技術的信頼感を与えるデザイン</li>
+    <li>レスポンシブ対応（PC / モバイル両対応必須）</li>
+    <li>Tailwind CSS によるスタイル設計を基本とする</li>
+  </ul>
+
+  <h2>4. 技術要件（Tech Stack）</h2>
+  <ul>
+    <li>フロントエンド: React + TypeScript + React Router</li>
+    <li>UIライブラリ: Tailwind CSS</li>
+    <li>デプロイ環境: GitHub Pages</li>
+    <li>ドメイン対応:
+      <ul>
+        <li>メインサイト: <code>https://lsklab.com</code>（<code>https://letsspeak.github.io</code> はリダイレクト）</li>
+        <li>ブログ: <code>https://blog.lsklab.com</code>（外部構成、リンク対応）</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>5. コンテンツ構成</h2>
+  <p>サイトルート（<code>https://lsklab.com</code>）に以下のセクションを設置：</p>
+  <ul>
+    <li>トップ</li>
+    <li>自己紹介</li>
+    <li>スキル一覧</li>
+    <li>職務経歴</li>
+    <li>プロジェクト紹介</li>
+    <li>お問い合わせ</li>
+    <li>GitHub リンク</li>
+    <li>外部ブログへのリンク（<code>https://blog.lsklab.com</code>）</li>
+  </ul>
+  <p class="note">※ 職務経歴・スキルなどは Markdown から生成 or 手動埋め込み</p>
+
+  <h2>6. 非機能要件（NFR）</h2>
+  <ul>
+    <li>パフォーマンス: Lighthouse 高評価を目指す（PWAはオプション）</li>
+    <li>SEO対策: title, meta, OGP対応必須</li>
+    <li>アクセシビリティ: WCAG対応は意識しすぎなくてよい（一般的な対応は維持）</li>
+  </ul>
+
+  <h2>7. 今後の拡張方針（メモ）</h2>
+  <ul>
+    <li>ブログ記事の静的統合（MDXなど）も将来的に検討可能</li>
+    <li>外部サービス（Google Analytics、Search Console など）の導入検討</li>
+  </ul>
+</body>
+</html>

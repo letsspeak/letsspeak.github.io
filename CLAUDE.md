@@ -39,8 +39,9 @@ src/
 
 docs/                  # 仕様書・要件定義
 ├── specifications/
-│   ├── requirements.md # ポートフォリオサイト要件定義
+│   ├── requirements.html # ポートフォリオサイト要件定義
 │   └── README.md
+├── backlog.html      # 残タスク一覧
 └── resume.md         # 日本語履歴書（.gitignoreで除外）
 ```
 
@@ -85,6 +86,8 @@ npm run deploy
 - **プロトタイプ警告**: `src/components/Layout.tsx` のバナー（本格運用時に削除）
 
 ## Important Notes
+
+- **ドキュメントは HTML**: `docs/` 配下の文書は HTML で書く（README.md と CLAUDE.md のみ Markdown）。残タスクは `docs/backlog.html` に集約
 
 - **プロトタイプ状態**: 現在はサンプルデータを含むプロトタイプ
 - **警告表示**: 全ページ上部に黄色の警告バナーを表示中

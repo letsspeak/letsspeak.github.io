@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Backlog - lsklab.com</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body { max-width: 52rem; margin: 2rem auto; padding: 0 1rem; font-family: system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif; line-height: 1.7; }
+    h1 { font-size: 1.6rem; border-bottom: 2px solid #888; padding-bottom: .3rem; }
+    h2 { font-size: 1.2rem; margin-top: 2rem; border-left: 4px solid #888; padding-left: .6rem; }
+    h3 { font-size: 1rem; margin-top: 1.4rem; }
+    code, pre { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
+    pre { background: rgba(128,128,128,.12); padding: .8rem; border-radius: 6px; overflow-x: auto; }
+    code { background: rgba(128,128,128,.12); padding: .1em .3em; border-radius: 3px; }
+    pre code { background: none; padding: 0; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #999; padding: .4rem .6rem; text-align: left; vertical-align: top; }
+    th { background: rgba(128,128,128,.12); }
+    .note { font-size: .9rem; opacity: .8; }
+    s { opacity: .6; }
+  </style>
+</head>
+<body>
+  <h1>Backlog</h1>
+  <p class="note">後でやるタスクのメモ。完了したら該当項目を削除する。最終更新: 2026-10-21</p>
+
+  <h2>1. サイト本番化に向けた残作業</h2>
+  <table>
+    <thead><tr><th>項目</th><th>内容</th><th>場所</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>プロトタイプ表示の除去</td>
+        <td>全ページ上部の黄色い「プロトタイプサイト」バナーと、タイトルの「【プロトタイプ】」を外す。</td>
+        <td><code>src/components/Layout.tsx</code>、<code>src/index.html</code></td>
+      </tr>
+      <tr>
+        <td>年齢表示の扱い</td>
+        <td>固定値だった年齢行は 2026-10-21 に削除済み。表示を戻すなら生年を定数にして自動計算にする（実務経験は <code>CAREER_START_YEAR</code> から自動計算済み）。</td>
+        <td><code>src/components/sections/About.tsx</code></td>
+      </tr>
+      <tr>
+        <td>SEO / OGP</td>
+        <td>要件定義にある title・meta description・OGP が未設定。</td>
+        <td><code>src/index.html</code></td>
+      </tr>
+      <tr>
+        <td>言語切り替え（日英）</td>
+        <td>要件定義にあるが未実装。優先度は低い。</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>プロジェクト詳細ページ</td>
+        <td>要件定義では一覧＋詳細の構成だが、現在は単一ページのスクロール構成で詳細ページはない。必要かを再検討する。</td>
+        <td><code>src/components/sections/Projects.tsx</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>2. お問い合わせフォーム送信時にスマホへ通知する（保留）</h2>
+  <p><strong>やりたいこと:</strong> lsklab.com のお問い合わせフォーム（Google フォーム）に回答があったときだけ、スマホに通知を出したい。</p>
+  <p><strong>現状:</strong> 回答は Google フォームの標準機能で Gmail に通知メールが届く。ただし Gmail アプリの通知は「すべて」か「優先度の高いメールのみ」しか選べず、どちらも他のメールの通知も通ってしまうため、フォーム通知だけに絞れない。</p>
+  <h3>候補（おすすめ順）</h3>
+  <ol>
+    <li><strong>Google Apps Script → Webhook</strong><br>フォームの「フォーム送信時」トリガーで Apps Script を動かし、Discord / Slack / ntfy などの Webhook に投げる。Gmail から完全に切り離せるので一番確実。</li>
+    <li><strong>Android のみ: ラベル別通知</strong><br>Gmail フィルタで専用ラベルを付け、Gmail アプリのラベルごとの通知を使う。iOS では不可。</li>
+    <li><s>Gmail フィルタで「常に重要マーク」</s><br>「優先度の高いメールのみ」でも Gmail が重要と判断した他のメールが鳴るため却下。</li>
+  </ol>
+  <h3>通知メールの条件（フィルタを作る場合）</h3>
+<pre><code>from:forms-receipts-noreply@google.com
+subject:(フォーム「お問い合わせ」に新しい回答があります)</code></pre>
+
+  <h2>3. contact@lsklab.com 廃止に伴う後片付け</h2>
+  <table>
+    <thead><tr><th>項目</th><th>内容</th><th>状態</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Route 53 のメール関連レコード削除</td>
+        <td>lsklab.com ホストゾーンに残っている ImprovMX 向け MX レコード 2 件と SPF の TXT レコード 1 件を削除する。消すと lsklab.com 宛メールは完全に不達になる。</td>
+        <td>未対応</td>
+      </tr>
+      <tr>
+        <td>ImprovMX の整理</td>
+        <td>ImprovMX（letsinfinite 宛に転送していたサービス）から lsklab.com を削除、またはアカウントごと閉鎖する。MX を消せば自動的に整理される見込み。</td>
+        <td>未対応（要ログイン）</td>
+      </tr>
+      <tr>
+        <td>AWS 側のフォーム用リソース</td>
+        <td>Lambda / API Gateway / SES / IAM ロールはいずれも作成されていなかったことを 2026-10-21 にコンソールで確認済み。</td>
+        <td>対応不要</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>4. AWS アカウントの棚卸し（サイトとは無関係だが気づいたもの）</h2>
+  <ul>
+    <li>Lambda の「test」関数（nodejs8.10、8 年前）はランタイムがサポート終了。不要なら削除。</li>
+    <li>IAM ユーザー letsspeak のアクセスキーは作成から約 490 日間未使用。使わないなら無効化か削除。</li>
+    <li>IAM ユーザー blog-deploy-user / blog-setup-user は 1 年以上未使用。ブログ側の運用と合わせて要否を確認。</li>
+  </ul>
+
+  <h2>5. 開発環境</h2>
+  <ul>
+    <li><code>gh</code> CLI の認証が切れている（HTTP 401）。GitHub Actions のログを見るには <code>gh auth login</code> が必要。</li>
+  </ul>
+</body>
+</html>
