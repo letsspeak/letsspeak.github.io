@@ -21,8 +21,11 @@ const Home: React.FC = () => {
             <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
               <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
                 <div className="sm:text-center lg:text-left">
-                  <p className="text-sm font-semibold text-primary-600 tracking-wide mb-3">大宮 将嗣 / letsspeak</p>
-                  <h1 className="text-3xl tracking-normal font-extrabold text-gray-900 sm:text-4xl lg:text-[2.6rem] leading-tight">
+                  <p className="text-sm font-semibold tracking-wide mb-4">
+                    <span className="text-gray-700">大宮 将嗣</span>
+                    <a href="https://github.com/letsspeak" target="_blank" rel="noopener noreferrer" className="ml-2 text-primary-600 hover:text-primary-500">@letsspeak</a>
+                  </p>
+                  <h1 className="text-3xl tracking-normal font-extrabold text-gray-900 sm:text-4xl lg:text-[2.6rem] leading-[1.35] space-y-1">
                     <span className="block">AI 機能を備えた</span>
                     <span className="block" style={{
                       background: 'linear-gradient(90deg, #2563eb 0%, #1d4ed8 30%, #7c3aed 100%)',

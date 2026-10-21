@@ -25,6 +25,33 @@ const statusBadge = (status: string) => {
   return <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full whitespace-nowrap">完了</span>
 }
 
+const APPROACHES = [
+  {
+    title: 'AI を前提にした開発',
+    detail: 'Claude Code を設計・実装・テスト・レビューに組み込み、開発環境もその前提で構築します。',
+    color: 'bg-violet-100 text-violet-700',
+    icon: 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z',
+  },
+  {
+    title: '技術選択',
+    detail: 'プロジェクトの要件に最適な技術スタックを調査・選定し、根拠をドキュメントに残します。',
+    color: 'bg-sky-100 text-sky-700',
+    icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4',
+  },
+  {
+    title: '協調性',
+    detail: '多国籍チームや大人数のチームでも、タスク管理と技術支援で全体を前に進めます。',
+    color: 'bg-amber-100 text-amber-700',
+    icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
+  },
+  {
+    title: '一貫した担当',
+    detail: '要件定義・設計から実装、リリース、運用保守まで通して関わります。',
+    color: 'bg-emerald-100 text-emerald-700',
+    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+  },
+]
+
 const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<string | null>(projectIdFromHash)
 
@@ -199,13 +226,22 @@ const Projects: React.FC = () => {
             )}
 
             {!selectedProjectData && (
-              <div className="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-6">
-                <h2 className="text-lg font-semibold text-blue-900 mb-3">プロジェクトへの取り組み方針</h2>
-                <div className="text-blue-800 space-y-2 text-sm">
-                  <p>• <strong>AI を前提にした開発</strong>: Claude Code を設計・実装・テスト・レビューに組み込み、開発環境もその前提で構築する</p>
-                  <p>• <strong>技術選択</strong>: プロジェクトの要件に最適な技術スタックを調査・選定し、根拠をドキュメントに残す</p>
-                  <p>• <strong>協調性</strong>: 多国籍チームや大人数のチームでも、タスク管理と技術支援で全体を前に進める</p>
-                  <p>• <strong>一貫した担当</strong>: 要件定義・設計から実装、リリース、運用保守まで通して関わる</p>
+              <div className="mt-8">
+                <h2 className="text-lg font-semibold text-gray-900 mb-4">プロジェクトへの取り組み方針</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {APPROACHES.map((item) => (
+                    <div key={item.title} className="flex gap-4 bg-gray-50 border border-gray-200 rounded-lg p-5">
+                      <span className={`flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center ${item.color}`} aria-hidden="true">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
+                        </svg>
+                      </span>
+                      <div>
+                        <h3 className="text-sm font-bold text-gray-900">{item.title}</h3>
+                        <p className="text-sm text-gray-600 leading-relaxed mt-1">{item.detail}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             )}
