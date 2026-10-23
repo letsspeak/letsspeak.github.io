@@ -45,15 +45,13 @@
         <td class="loc"><code>public/vite.svg</code><br><code>src/index.html</code></td>
       </tr>
       <tr>
-        <td class="pri pri-high">高</td>
-        <td>2. Google 検索で lsklab.com を上位に（Search Console 登録）</td>
+        <td class="pri pri-mid">中</td>
+        <td>2. Google 検索で lsklab.com を上位に（被リンク）</td>
         <td>
-          コード側は 2026-10-23 に対応済み: robots.txt、sitemap.xml、canonical、OGP と Twitter カード（画像は <code>public/ogp.png</code>）、JSON-LD（Person／WebSite）。残りは手動作業:
-          (1) <strong>Google Search Console に lsklab.com を登録し、sitemap.xml を送信。</strong>ドメインプロパティなら Route 53 に TXT レコードを追加、URL プレフィックスなら meta タグを <code>src/index.html</code> に追加して検証。登録後「URL 検査」でトップページのインデックス登録をリクエストする。
-          (2) GitHub プロフィールの Website 欄と README、ブログのフッターから lsklab.com へリンクして被リンクを増やす。
-          GitHub の方がドメイン評価が高いので、名前検索で 1 位にするには (1)(2) と継続的な更新が効く。
+          2026-10-23 までに対応済み: robots.txt、sitemap.xml、canonical、OGP と Twitter カード（<code>public/ogp.png</code>）、JSON-LD、Google Search Console 登録（URL プレフィックス https://lsklab.com/、HTML ファイル方式。<code>public/google664e37fe6b3f93c4.html</code> は削除しない）、サイトマップ送信、トップページのインデックス再登録リクエスト。
+          残り: (1) GitHub プロフィールの Website 欄と README から lsklab.com へリンク。(2) ブログ（~/git/blog）のフッターから lsklab.com へリンク。(3) 1〜2 週間後に Search Console の「検索パフォーマンス」で名前・ハンドル検索の掲載順位を確認する。
         </td>
-        <td class="loc">Search Console<br>Route 53 または <code>src/index.html</code><br>GitHub プロフィール<br>~/git/blog</td>
+        <td class="loc">GitHub プロフィール<br>~/git/blog<br>Search Console</td>
       </tr>
       <tr>
         <td class="pri pri-mid">中</td>

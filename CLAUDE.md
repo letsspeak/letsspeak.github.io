@@ -90,6 +90,7 @@ npm run deploy
 - **ドキュメントは HTML**: `docs/` 配下の文書は HTML で書く（README.md と CLAUDE.md のみ Markdown）。残タスクは `docs/backlog.html` に集約
 
 - **掲載内容は職務経歴書と一致させる**: 数字・技術・年数は `src/data/profile.ts` と `src/data/projects.ts` が正。根拠のない数字（「20+」など）は載せない
+- **Search Console の確認ファイル**: `public/google664e37fe6b3f93c4.html` は所有権確認用。削除しない
 - **社名は載せない**: 所属・取引先は業種と契約形態のみ。リポジトリは公開されている
 - **MIME対応**: ビルド済みファイルを直接配置してMIMEタイプ問題を回避
 - **Vite の入口は `src/index.html`**: リポジトリ直下の `index.html` はデプロイ用 Action が置くビルド成果物なので編集しない（`vite.config.ts` の `root: 'src'` 参照）
