@@ -6,7 +6,8 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [activeSection, setActiveSection] = useState('home')
-  const [contactVisible, setContactVisible] = useState(false)
+  const [contactVisible, setContactVisible] = useState(true)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   const navigation = [
     { name: 'ホーム', href: '#home', id: 'home' },
@@ -39,19 +40,29 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     return () => observer.disconnect()
   }, [])
 
-  // お問い合わせセクションが画面内にある間はフローティングボタンを隠す
+  // お問い合わせセクション、またはヒーローのお問い合わせボタンが画面内にある間はフローティングボタンを隠す
   useEffect(() => {
-    const contact = document.getElementById('contact')
-    if (!contact) return
+    const targets = [document.getElementById('contact'), document.getElementById('hero-cta')].filter(
+      (el): el is HTMLElement => el !== null
+    )
+    if (targets.length === 0) return
+    const visible = new Set<Element>()
     const observer = new IntersectionObserver(
-      ([entry]) => setContactVisible(entry.isIntersecting),
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) visible.add(entry.target)
+          else visible.delete(entry.target)
+        })
+        setContactVisible(visible.size > 0)
+      },
       { threshold: 0 }
     )
-    observer.observe(contact)
+    targets.forEach((el) => observer.observe(el))
     return () => observer.disconnect()
   }, [])
 
   const scrollToSection = (sectionId: string) => {
+    setMenuOpen(false)
     const element = document.getElementById(sectionId)
     if (element) {
       const offsetTop = element.offsetTop - 80 // ナビゲーションの高さ + 余白
@@ -61,6 +72,23 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       })
     }
   }
+
+  // モバイルメニューは Escape キーと画面幅の拡大で閉じる
+  useEffect(() => {
+    if (!menuOpen) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false)
+    }
+    const onResize = () => {
+      if (window.innerWidth >= 640) setMenuOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    window.addEventListener('resize', onResize)
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      window.removeEventListener('resize', onResize)
+    }
+  }, [menuOpen])
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -92,7 +120,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 ))}
               </div>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center gap-2">
               <a
                 href="https://github.com/letsspeak"
                 target="_blank"
@@ -108,10 +136,54 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   />
                 </svg>
               </a>
+              <button
+                type="button"
+                onClick={() => setMenuOpen((open) => !open)}
+                aria-label={menuOpen ? 'メニューを閉じる' : 'メニューを開く'}
+                aria-expanded={menuOpen}
+                aria-controls="mobile-menu"
+                className="sm:hidden inline-flex items-center justify-center w-10 h-10 rounded-md text-gray-500 hover:text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500"
+              >
+                {menuOpen ? (
+                  <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                )}
+              </button>
             </div>
           </div>
         </div>
+
+        {/* モバイルメニュー（640px 未満） */}
+        {menuOpen && (
+          <div id="mobile-menu" className="sm:hidden border-t border-gray-200 bg-white shadow-lg">
+            <div className="px-2 py-2 space-y-1">
+              {navigation.map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`w-full text-left px-3 py-3 rounded-md text-base font-medium ${
+                    activeSection === item.id
+                      ? 'bg-primary-50 text-primary-700'
+                      : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                  }`}
+                >
+                  {item.name}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </nav>
+
+      {/* メニュー外タップで閉じるための背景 */}
+      {menuOpen && (
+        <div className="sm:hidden fixed inset-0 z-30 bg-black/20" onClick={() => setMenuOpen(false)} aria-hidden="true"></div>
+      )}
 
       <main className="pt-16">
         {children}

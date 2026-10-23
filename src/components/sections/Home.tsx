@@ -25,7 +25,7 @@ const Home: React.FC = () => {
                     <span className="text-gray-700">大宮 将嗣</span>
                     <a href="https://github.com/letsspeak" target="_blank" rel="noopener noreferrer" className="ml-2 text-primary-600 hover:text-primary-500">@letsspeak</a>
                   </p>
-                  <h1 className="text-3xl tracking-normal font-extrabold text-gray-900 sm:text-4xl lg:text-[2.6rem] leading-[1.35] space-y-1">
+                  <h1 className="text-[1.75rem] tracking-normal font-extrabold text-gray-900 sm:text-4xl lg:text-[2.6rem] leading-[1.35] space-y-1">
                     <span className="block">AI 機能を備えた</span>
                     <span className="block" style={{
                       background: 'linear-gradient(90deg, #2563eb 0%, #1d4ed8 30%, #7c3aed 100%)',
@@ -41,7 +41,7 @@ const Home: React.FC = () => {
                     iOS／Web／バックエンドを横断して {years} 年。Claude Code を日常的に設計・実装・テスト・レビューに組み込み、
                     データ分析基盤から生成AI を使った業務支援ツールまで手がけています。
                   </p>
-                  <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                  <div id="hero-cta" className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                     <div className="rounded-md shadow">
                       <button
                         onClick={() => scrollToSection('projects')}
