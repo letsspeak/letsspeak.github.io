@@ -46,17 +46,14 @@
       </tr>
       <tr>
         <td class="pri pri-high">高</td>
-        <td>2. SEO / OGP（検索で lsklab.com を上位に）</td>
+        <td>2. Google 検索で lsklab.com を上位に（Search Console 登録）</td>
         <td>
-          Google で名前やハンドルを検索すると GitHub が先に出て、このサイトが出てこない。やること:
-          (1) Google Search Console に lsklab.com を登録し、sitemap.xml を送信。
-          (2) <code>public/</code> に robots.txt と sitemap.xml を置く（SPA なのでトップ 1 URL と docs を列挙）。
-          (3) canonical と JSON-LD（Person: 氏名、ハンドル、sameAs に GitHub・ブログ）を <code>src/index.html</code> に追加。
-          (4) OGP（og:title、og:description、og:image）と Twitter カード。プレビュー用画像も用意。
-          (5) GitHub プロフィールの Website 欄と README、ブログのフッターから lsklab.com へリンクし、被リンクを増やす。
-          GitHub の方がドメイン評価が高いので、名前検索で 1 位にするには被リンクと継続的な更新が効く。
+          コード側は 2026-10-23 に対応済み: robots.txt、sitemap.xml、canonical、OGP と Twitter カード（画像は <code>public/ogp.png</code>）、JSON-LD（Person／WebSite）。残りは手動作業:
+          (1) <strong>Google Search Console に lsklab.com を登録し、sitemap.xml を送信。</strong>ドメインプロパティなら Route 53 に TXT レコードを追加、URL プレフィックスなら meta タグを <code>src/index.html</code> に追加して検証。登録後「URL 検査」でトップページのインデックス登録をリクエストする。
+          (2) GitHub プロフィールの Website 欄と README、ブログのフッターから lsklab.com へリンクして被リンクを増やす。
+          GitHub の方がドメイン評価が高いので、名前検索で 1 位にするには (1)(2) と継続的な更新が効く。
         </td>
-        <td class="loc"><code>src/index.html</code><br><code>public/</code><br>GitHub プロフィール<br>~/git/blog</td>
+        <td class="loc">Search Console<br>Route 53 または <code>src/index.html</code><br>GitHub プロフィール<br>~/git/blog</td>
       </tr>
       <tr>
         <td class="pri pri-mid">中</td>
